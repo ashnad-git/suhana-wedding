@@ -23,7 +23,8 @@ button, input, select, textarea { font: inherit; }
 .intro.opened { opacity: 0; visibility: hidden; }
 .intro-copy { text-align: center; transition: opacity .45s, transform .7s; }
 .intro.opening .intro-copy, .intro.opening .open-label { opacity: 0; transform: translateY(-15px); }
-.intro-copy h1 { margin: 10px 0 0; font: 4.5rem/1 var(--serif); }
+.intro-copy h1 { margin: 0; font: 4.5rem/1 var(--serif); }
+.intro-copy .eyebrow { margin: 22px 0 0; }
 .intro-copy h1 i, .hero h2 i, .closing h2 i {
   display: inline-block;
   font-family: Georgia, "Times New Roman", serif;
