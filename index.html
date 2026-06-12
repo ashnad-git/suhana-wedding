@@ -31,25 +31,45 @@
         <svg class="wax-seal" viewBox="0 0 100 100" aria-hidden="true">
           <defs>
             <radialGradient id="pouredWax" cx="35%" cy="27%" r="78%">
-              <stop offset="0%" stop-color="#8b2c3b"/>
-              <stop offset="42%" stop-color="#6d1928"/>
-              <stop offset="78%" stop-color="#57101e"/>
-              <stop offset="100%" stop-color="#3c0913"/>
+              <stop offset="0%" stop-color="#a43b4c"/>
+              <stop offset="24%" stop-color="#842636"/>
+              <stop offset="62%" stop-color="#681725"/>
+              <stop offset="86%" stop-color="#52101c"/>
+              <stop offset="100%" stop-color="#3b0812"/>
             </radialGradient>
             <linearGradient id="waxEdge" x1="25%" y1="12%" x2="78%" y2="90%">
-              <stop offset="0%" stop-color="#a63b4b" stop-opacity=".72"/>
-              <stop offset="46%" stop-color="#6c1726" stop-opacity=".92"/>
-              <stop offset="100%" stop-color="#3a0711" stop-opacity=".9"/>
+              <stop offset="0%" stop-color="#b04a59" stop-opacity=".82"/>
+              <stop offset="22%" stop-color="#8a2939" stop-opacity=".98"/>
+              <stop offset="68%" stop-color="#601421"/>
+              <stop offset="100%" stop-color="#350710"/>
             </linearGradient>
-            <filter id="organicWax" x="-30%" y="-30%" width="160%" height="165%">
-              <feTurbulence type="fractalNoise" baseFrequency=".028" numOctaves="3" seed="17" result="shapeNoise"/>
-              <feDisplacementMap in="SourceGraphic" in2="shapeNoise" scale="4.2" xChannelSelector="R" yChannelSelector="G"/>
-              <feDropShadow dx="0" dy="3.2" stdDeviation="2.1" flood-color="#21040a" flood-opacity=".55"/>
+            <radialGradient id="recessedWax" cx="36%" cy="30%" r="74%">
+              <stop offset="0%" stop-color="#7c2332"/>
+              <stop offset="72%" stop-color="#5a111e"/>
+              <stop offset="100%" stop-color="#430b16"/>
+            </radialGradient>
+            <linearGradient id="rimHighlight" x1="18%" y1="8%" x2="82%" y2="92%">
+              <stop offset="0%" stop-color="#ef9aa5" stop-opacity=".48"/>
+              <stop offset="35%" stop-color="#bd5362" stop-opacity=".18"/>
+              <stop offset="68%" stop-color="#3b0711" stop-opacity=".08"/>
+              <stop offset="100%" stop-color="#23040a" stop-opacity=".52"/>
+            </linearGradient>
+            <filter id="waxContact" x="-30%" y="-30%" width="160%" height="170%">
+              <feDropShadow dx="0" dy="3.4" stdDeviation="2.2" flood-color="#21040a" flood-opacity=".58"/>
             </filter>
-            <filter id="waxSurface" x="-15%" y="-15%" width="130%" height="130%">
-              <feTurbulence type="fractalNoise" baseFrequency=".52" numOctaves="3" seed="6" result="surfaceNoise"/>
-              <feColorMatrix in="surfaceNoise" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .09 0" result="faintTexture"/>
-              <feBlend in="SourceGraphic" in2="faintTexture" mode="soft-light"/>
+            <filter id="centerInset" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="1.1" result="centerBlur"/>
+              <feOffset in="centerBlur" dx="1.1" dy="1.4" result="centerLower"/>
+              <feFlood flood-color="#26040b" flood-opacity=".68" result="centerShadowColor"/>
+              <feComposite in="centerShadowColor" in2="centerLower" operator="in" result="centerShadow"/>
+              <feOffset in="centerBlur" dx="-.8" dy="-1" result="centerUpper"/>
+              <feFlood flood-color="#bd5967" flood-opacity=".24" result="centerLightColor"/>
+              <feComposite in="centerLightColor" in2="centerUpper" operator="in" result="centerLight"/>
+              <feMerge>
+                <feMergeNode in="centerLight"/>
+                <feMergeNode in="centerShadow"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
             </filter>
             <filter id="pressedMonogram" x="-20%" y="-20%" width="140%" height="140%">
               <feMorphology in="SourceAlpha" operator="dilate" radius="1.15" result="pressedEdge"/>
@@ -73,9 +93,12 @@
               </feMerge>
             </filter>
           </defs>
-          <path class="wax-overflow" d="M50 4c8 1 12 5 18 5 8 1 13 3 17 9 5 6 4 13 8 19 4 7 4 13 1 20-2 8-7 12-10 19-4 7-10 10-18 12-7 3-13 7-21 5-8-1-13-6-20-8-8-2-12-7-15-14-3-6-6-12-4-19 1-7 0-13 4-20 4-6 8-11 14-15 7-4 12-7 19-8 3 0 5-4 7-5z" fill="url(#waxEdge)" filter="url(#organicWax)"/>
-          <path class="wax-body" d="M50 10c8 0 13 4 20 6 7 2 11 7 15 13 4 6 4 13 5 20 1 7-2 13-5 20-4 6-9 10-16 14-6 3-13 5-20 4-8 0-14-3-21-6-6-4-10-9-14-16-3-6-4-13-2-20 1-7 3-13 8-19 4-5 10-9 16-12 5-3 9-4 14-4z" fill="url(#pouredWax)" filter="url(#waxSurface)"/>
-          <path class="wax-highlight" d="M20 36c6-14 18-21 31-21 10 0 19 3 26 10-10-5-20-6-29-4-11 1-20 6-28 15z"/>
+          <path class="wax-overflow" d="M50 4c8 1 12 5 18 5 8 1 13 3 17 9 5 6 4 13 8 19 4 7 4 13 1 20-2 8-7 12-10 19-4 7-10 10-18 12-7 3-13 7-21 5-8-1-13-6-20-8-8-2-12-7-15-14-3-6-6-12-4-19 1-7 0-13 4-20 4-6 8-11 14-15 7-4 12-7 19-8 3 0 5-4 7-5z" fill="url(#waxEdge)" filter="url(#waxContact)"/>
+          <path class="wax-body" d="M50 10c8 0 13 4 20 6 7 2 11 7 15 13 4 6 4 13 5 20 1 7-2 13-5 20-4 6-9 10-16 14-6 3-13 5-20 4-8 0-14-3-21-6-6-4-10-9-14-16-3-6-4-13-2-20 1-7 3-13 8-19 4-5 10-9 16-12 5-3 9-4 14-4z" fill="url(#pouredWax)"/>
+          <path class="wax-rim-light" d="M50 7c8 1 13 5 19 6 8 2 13 5 17 12 4 6 4 12 6 19 2 8 0 14-3 21-3 7-8 12-14 16-7 5-15 7-23 8-8 0-15-2-22-6-7-3-12-8-16-14-4-7-5-14-4-21 1-8 3-15 8-21 4-6 10-10 17-13 5-3 10-5 15-7z" fill="none" stroke="url(#rimHighlight)" stroke-width="4.4" stroke-linecap="round"/>
+          <ellipse class="wax-center" cx="50" cy="51" rx="29" ry="27.5" fill="url(#recessedWax)" filter="url(#centerInset)"/>
+          <path class="wax-highlight" d="M22 34c7-12 17-18 29-18 9 0 17 2 23 7-9-3-17-3-25-1-11 2-19 6-27 12z"/>
+          <path class="wax-specular" d="M29 25c5-4 11-6 17-7"/>
           <path class="wax-ridge" d="M23 69c7 10 17 14 29 14 11 0 20-4 27-12"/>
           <ellipse class="stamp-pressure" cx="50" cy="51" rx="27.5" ry="26"/>
           <g class="wax-monogram" filter="url(#pressedMonogram)">
