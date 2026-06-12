@@ -28,58 +28,52 @@
       <span class="envelope-front"></span>
       <span class="envelope-flap"></span>
       <span class="seal">
-        <svg class="royal-seal" viewBox="0 0 100 100" aria-hidden="true">
+        <svg class="wax-seal" viewBox="0 0 100 100" aria-hidden="true">
           <defs>
-            <radialGradient id="waxTone" cx="34%" cy="27%" r="76%">
-              <stop offset="0%" stop-color="#8a2938"/>
-              <stop offset="45%" stop-color="#651522"/>
-              <stop offset="100%" stop-color="#350811"/>
+            <radialGradient id="pouredWax" cx="35%" cy="27%" r="78%">
+              <stop offset="0%" stop-color="#8b2c3b"/>
+              <stop offset="42%" stop-color="#6d1928"/>
+              <stop offset="78%" stop-color="#57101e"/>
+              <stop offset="100%" stop-color="#3c0913"/>
             </radialGradient>
-            <radialGradient id="waxInset" cx="40%" cy="32%" r="72%">
-              <stop offset="0%" stop-color="#721d2b"/>
-              <stop offset="100%" stop-color="#450c16"/>
-            </radialGradient>
-            <linearGradient id="antiqueGold" x1="18%" y1="10%" x2="82%" y2="90%">
-              <stop offset="0%" stop-color="#f0cf91"/>
-              <stop offset="42%" stop-color="#c99a53"/>
-              <stop offset="72%" stop-color="#8f642f"/>
-              <stop offset="100%" stop-color="#d8ad68"/>
+            <linearGradient id="waxEdge" x1="25%" y1="12%" x2="78%" y2="90%">
+              <stop offset="0%" stop-color="#a63b4b" stop-opacity=".72"/>
+              <stop offset="46%" stop-color="#6c1726" stop-opacity=".92"/>
+              <stop offset="100%" stop-color="#3a0711" stop-opacity=".9"/>
             </linearGradient>
-            <filter id="pressedWax" x="-25%" y="-25%" width="150%" height="150%">
-              <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="8" result="noise"/>
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+            <filter id="organicWax" x="-30%" y="-30%" width="160%" height="165%">
+              <feTurbulence type="fractalNoise" baseFrequency=".028" numOctaves="3" seed="17" result="shapeNoise"/>
+              <feDisplacementMap in="SourceGraphic" in2="shapeNoise" scale="4.2" xChannelSelector="R" yChannelSelector="G"/>
+              <feDropShadow dx="0" dy="3.2" stdDeviation="2.1" flood-color="#21040a" flood-opacity=".55"/>
             </filter>
-            <filter id="waxGrain" x="-15%" y="-15%" width="130%" height="130%">
-              <feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="4" result="grain"/>
-              <feColorMatrix in="grain" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .13 0" result="softGrain"/>
-              <feBlend in="SourceGraphic" in2="softGrain" mode="multiply"/>
+            <filter id="waxSurface" x="-15%" y="-15%" width="130%" height="130%">
+              <feTurbulence type="fractalNoise" baseFrequency=".52" numOctaves="3" seed="6" result="surfaceNoise"/>
+              <feColorMatrix in="surfaceNoise" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .09 0" result="faintTexture"/>
+              <feBlend in="SourceGraphic" in2="faintTexture" mode="soft-light"/>
             </filter>
-            <filter id="goldRelief" x="-30%" y="-30%" width="160%" height="160%">
-              <feDropShadow dx=".5" dy=".8" stdDeviation=".45" flood-color="#23040a" flood-opacity=".75"/>
-              <feDropShadow dx="-.35" dy="-.45" stdDeviation=".25" flood-color="#f4d59b" flood-opacity=".55"/>
+            <filter id="pressedMonogram" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation=".35" result="softType"/>
+              <feOffset in="softType" dx="1" dy="1.2" result="darkInset"/>
+              <feFlood flood-color="#310711" flood-opacity=".72" result="darkColor"/>
+              <feComposite in="darkColor" in2="darkInset" operator="in" result="darkImpression"/>
+              <feOffset in="softType" dx="-.7" dy="-.8" result="lightInset"/>
+              <feFlood flood-color="#ae5360" flood-opacity=".38" result="lightColor"/>
+              <feComposite in="lightColor" in2="lightInset" operator="in" result="lightImpression"/>
+              <feMerge>
+                <feMergeNode in="lightImpression"/>
+                <feMergeNode in="darkImpression"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
             </filter>
           </defs>
-          <circle class="seal-wax" cx="50" cy="50" r="46" fill="url(#waxTone)" filter="url(#pressedWax)"/>
-          <circle class="seal-wax-grain" cx="50" cy="50" r="43" fill="url(#waxTone)" filter="url(#waxGrain)"/>
-          <circle class="seal-ring seal-ring-outer" cx="50" cy="50" r="38"/>
-          <circle class="seal-ring seal-ring-beaded" cx="50" cy="50" r="34.5"/>
-          <circle class="seal-center" cx="50" cy="50" r="29" fill="url(#waxInset)"/>
-          <circle class="seal-ring seal-ring-inner" cx="50" cy="50" r="27"/>
-          <g class="seal-ornament" fill="url(#antiqueGold)" filter="url(#goldRelief)">
-            <path d="M50 10.8l1.7 2.7 3.1.8-2.1 2.4.2 3.2-2.9-1.3-2.9 1.3.2-3.2-2.1-2.4 3.1-.8z"/>
-            <path d="M50 89.2l1.7-2.7 3.1-.8-2.1-2.4.2-3.2-2.9 1.3-2.9-1.3.2 3.2-2.1 2.4 3.1.8z"/>
-            <path d="M10.8 50l2.7-1.7.8-3.1 2.4 2.1 3.2-.2-1.3 2.9 1.3 2.9-3.2-.2-2.4 2.1-.8-3.1z"/>
-            <path d="M89.2 50l-2.7-1.7-.8-3.1-2.4 2.1-3.2-.2 1.3 2.9-1.3 2.9 3.2-.2 2.4 2.1.8-3.1z"/>
-            <circle cx="22.5" cy="22.5" r="1.15"/><circle cx="77.5" cy="22.5" r="1.15"/>
-            <circle cx="22.5" cy="77.5" r="1.15"/><circle cx="77.5" cy="77.5" r="1.15"/>
-          </g>
-          <g class="seal-flourish" filter="url(#goldRelief)">
-            <path d="M27 54c5-7 10-7 15-2M73 54c-5-7-10-7-15-2"/>
-            <path d="M29 58c4 3 8 3 12 0M71 58c-4 3-8 3-12 0"/>
-          </g>
-          <g class="seal-monogram" fill="url(#antiqueGold)" filter="url(#goldRelief)">
-            <text class="seal-letter seal-letter-s" x="39" y="64">S</text>
-            <text class="seal-letter seal-letter-d" x="61" y="64">D</text>
+          <path class="wax-overflow" d="M50 4c8 1 12 5 18 5 8 1 13 3 17 9 5 6 4 13 8 19 4 7 4 13 1 20-2 8-7 12-10 19-4 7-10 10-18 12-7 3-13 7-21 5-8-1-13-6-20-8-8-2-12-7-15-14-3-6-6-12-4-19 1-7 0-13 4-20 4-6 8-11 14-15 7-4 12-7 19-8 3 0 5-4 7-5z" fill="url(#waxEdge)" filter="url(#organicWax)"/>
+          <path class="wax-body" d="M50 10c8 0 13 4 20 6 7 2 11 7 15 13 4 6 4 13 5 20 1 7-2 13-5 20-4 6-9 10-16 14-6 3-13 5-20 4-8 0-14-3-21-6-6-4-10-9-14-16-3-6-4-13-2-20 1-7 3-13 8-19 4-5 10-9 16-12 5-3 9-4 14-4z" fill="url(#pouredWax)" filter="url(#waxSurface)"/>
+          <path class="wax-highlight" d="M20 36c6-14 18-21 31-21 10 0 19 3 26 10-10-5-20-6-29-4-11 1-20 6-28 15z"/>
+          <path class="wax-ridge" d="M23 69c7 10 17 14 29 14 11 0 20-4 27-12"/>
+          <ellipse class="stamp-pressure" cx="50" cy="51" rx="27.5" ry="26"/>
+          <g class="wax-monogram" filter="url(#pressedMonogram)">
+            <text class="wax-letter wax-letter-s" x="40" y="63">S</text>
+            <text class="wax-letter wax-letter-d" x="61" y="63">D</text>
           </g>
         </svg>
       </span>

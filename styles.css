@@ -40,48 +40,52 @@ button, input, select, textarea { font: inherit; }
 .eyebrow { margin: 0 0 20px; font: 500 .68rem/1.4 "Montserrat", sans-serif; letter-spacing: .24em; text-transform: uppercase; }
 .eyebrow.light, .display.light { color: var(--white); }
 .envelope { position: relative; width: min(520px, 84vw); aspect-ratio: 1.52; padding: 0; border: 0; background: transparent; cursor: pointer; perspective: 1000px; filter: drop-shadow(0 28px 34px rgba(26,4,10,.42)); }
-.envelope-back { position: absolute; inset: 0; background: linear-gradient(145deg, #8f633b, #c49a61 48%, #76502f); box-shadow: inset 0 0 25px rgba(55,23,9,.25); }
-.envelope-front { position: absolute; inset: 0; z-index: 4; background: linear-gradient(155deg, transparent 49.7%, #a87945 50%, #7b512f 100%) left/50% 100% no-repeat, linear-gradient(205deg, transparent 49.7%, #bd9158 50%, #835a35 100%) right/50% 100% no-repeat, linear-gradient(35deg, transparent 49.5%, #c99d61 50%, #8d623a 100%) bottom/100% 57% no-repeat; filter: saturate(.88); }
-.envelope-flap { position: absolute; inset: 0; z-index: 6; clip-path: polygon(0 0,100% 0,50% 59%); background: linear-gradient(160deg, #d0aa70 0%, #9b6b3e 76%, #7c4e2e 100%); box-shadow: inset 0 1px rgba(255,229,176,.35); transform-origin: top; transition: transform .9s cubic-bezier(.6,0,.3,1), z-index 0s .45s; }
+.envelope-back { position: absolute; inset: 0; background: linear-gradient(145deg, #ead09f, #dfbf86 48%, #cda66d); box-shadow: inset 0 0 25px rgba(91,57,22,.18); }
+.envelope-front { position: absolute; inset: 0; z-index: 4; background: linear-gradient(155deg, transparent 49.7%, #dfbf86 50%, #c69e64 100%) left/50% 100% no-repeat, linear-gradient(205deg, transparent 49.7%, #e8ca94 50%, #cda66d 100%) right/50% 100% no-repeat, linear-gradient(35deg, transparent 49.5%, #e2c38c 50%, #c49a5f 100%) bottom/100% 57% no-repeat; filter: saturate(.88); }
+.envelope-flap { position: absolute; inset: 0; z-index: 6; clip-path: polygon(0 0,100% 0,50% 59%); background: linear-gradient(160deg, #ecd3a3 0%, #dfbf86 68%, #c69d63 100%); box-shadow: inset 0 1px rgba(255,240,207,.48); transform-origin: top; transition: transform .9s cubic-bezier(.6,0,.3,1), z-index 0s .45s; }
 .seal {
   position: absolute;
   z-index: 7;
   left: 50%;
   top: 51%;
-  width: 74px;
-  height: 74px;
-  filter: drop-shadow(0 5px 5px rgba(25,1,6,.48));
+  width: 64px;
+  height: 64px;
   transform: translate(-50%,-50%) rotate(-4deg);
   transition: opacity .3s .25s, transform .5s;
 }
-.royal-seal { display: block; width: 100%; height: 100%; overflow: visible; }
-.seal-wax-grain { opacity: .62; }
-.seal-ring {
+.wax-seal { display: block; width: 100%; height: 100%; overflow: visible; }
+.wax-overflow { opacity: .94; }
+.wax-body { opacity: .98; }
+.wax-highlight {
   fill: none;
-  stroke: url("#antiqueGold");
-  filter: url("#goldRelief");
-}
-.seal-ring-outer { stroke-width: 1.15; }
-.seal-ring-beaded { stroke-width: 1.35; stroke-dasharray: .7 2.1; stroke-linecap: round; }
-.seal-ring-inner { stroke-width: .65; opacity: .82; }
-.seal-center { stroke: rgba(38,4,11,.52); stroke-width: 1.2; }
-.seal-ornament { opacity: .9; }
-.seal-flourish {
-  fill: none;
-  stroke: url("#antiqueGold");
-  stroke-width: .7;
+  stroke: rgba(234,130,143,.25);
+  stroke-width: 1.1;
   stroke-linecap: round;
-  opacity: .76;
 }
-.seal-letter {
+.wax-ridge {
+  fill: none;
+  stroke: rgba(43,5,13,.3);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+.stamp-pressure {
+  fill: none;
+  stroke: rgba(43,5,13,.34);
+  stroke-width: 1.25;
+  opacity: .72;
+}
+.wax-letter {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 33px;
+  font-size: 31px;
   font-style: italic;
   font-weight: 400;
   text-anchor: middle;
+  fill: rgba(61,7,17,.64);
+  stroke: rgba(155,61,75,.22);
+  stroke-width: .35;
 }
-.seal-letter-s { transform: translateX(1px) rotate(-7deg); transform-origin: 39px 55px; }
-.seal-letter-d { transform: translateX(-2px) rotate(5deg); transform-origin: 61px 55px; }
+.wax-letter-s { transform: translateX(1px) rotate(-6deg); transform-origin: 40px 54px; }
+.wax-letter-d { transform: translateX(-2px) rotate(4deg); transform-origin: 61px 54px; }
 .card { position: absolute; z-index: 2; left: 8%; right: 8%; top: 8%; bottom: 5%; display: grid; place-content: center; gap: 12px; color: #6a1a27; background: radial-gradient(circle at 50% 35%, #f5e6c7 0%, #dfc496 70%, #c9a56c 100%); border: 1px solid #e3bd78; box-shadow: inset 0 0 32px rgba(104,48,18,.15), 0 8px 18px rgba(38,7,12,.2); transition: transform 1s .5s; }
 .card::before, .card::after { content: ""; position: absolute; pointer-events: none; }
 .card::before { inset: 8px; border: 1px solid rgba(111,29,44,.55); }
