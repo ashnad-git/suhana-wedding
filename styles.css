@@ -70,7 +70,17 @@ button, input, select, textarea { font: inherit; }
 .scroll-cue { position: absolute; z-index: 3; right: 4vw; bottom: 5vh; display: flex; align-items: center; gap: 10px; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; }
 .scroll-cue span { width: 34px; height: 1px; background: white; }
 .paper { background: var(--paper); }
-.welcome { min-height: 95vh; padding: 14vh 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.welcome {
+  min-height: 95vh;
+  padding: 14vh 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #e0ac69;
+  background: var(--forest);
+  text-align: center;
+}
 .flourish { margin-bottom: 52px; font: 2rem var(--serif); }
 .flourish i {
   font-family: Georgia, "Times New Roman", serif;
@@ -80,7 +90,7 @@ button, input, select, textarea { font: inherit; }
 .display { margin: 0; font: clamp(3rem, 6vw, 6.5rem)/1.05 var(--serif); font-weight: 400; }
 .body-copy { max-width: 580px; margin: 35px auto 0; font-size: .95rem; line-height: 1.9; }
 .date-lockup { display: flex; align-items: center; gap: 28px; margin-top: 60px; }
-.date-lockup span { padding: 12px 0; border-block: 1px solid #a89e8d; font-size: .66rem; letter-spacing: .2em; }
+.date-lockup span { padding: 12px 0; border-block: 1px solid currentColor; font-size: .66rem; letter-spacing: .2em; }
 .date-lockup strong { font: 5rem/1 var(--serif); font-weight: 400; }
 .story { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; background: #d9d0c2; }
 .story-photo { min-height: 750px; background: linear-gradient(rgba(111,29,44,.2),rgba(111,29,44,.2)), url("assets/garden-couple.png") 30% center/cover; background-blend-mode: color; filter: saturate(.75) sepia(.08); }
