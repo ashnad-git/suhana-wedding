@@ -34,7 +34,7 @@ button, input, select, textarea { font: inherit; }
 }
 .intro-copy h1 i {
   margin-inline: .08em;
-  transform: translateY(-.1em);
+  transform: translateY(.08em);
   vertical-align: middle;
 }
 .eyebrow { margin: 0 0 20px; font: 500 .68rem/1.4 "Montserrat", sans-serif; letter-spacing: .24em; text-transform: uppercase; }
@@ -65,7 +65,7 @@ button, input, select, textarea { font: inherit; }
 .hero-shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(71,10,26,.2), rgba(92,18,35,.15) 45%, rgba(62,8,22,.7)); }
 .hero-content { position: absolute; z-index: 2; left: 5vw; right: 5vw; bottom: 10vh; text-align: center; }
 .hero-content h2, .closing h2 { display: flex; align-items: center; justify-content: center; gap: .22em; margin: 0; font: clamp(4.5rem, 11vw, 10rem)/.8 var(--serif); }
-.hero-content h2 i { transform: translateY(-.05em); }
+.hero-content h2 i { transform: translateY(.1em); }
 .hero-date { margin-top: 34px; font-size: .72rem; letter-spacing: .23em; text-transform: uppercase; }
 .scroll-cue { position: absolute; z-index: 3; right: 4vw; bottom: 5vh; display: flex; align-items: center; gap: 10px; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; }
 .scroll-cue span { width: 34px; height: 1px; background: white; }
