@@ -140,7 +140,7 @@ button, input, select, textarea { font: inherit; }
     0 0 var(--glow-size) rgba(239, 189, 124, .88),
     0 0 var(--glow-spread) rgba(205, 116, 101, .42);
   transform: translateX(-50%) rotate(45deg);
-  animation: star-twinkle var(--duration) ease-in-out var(--delay) infinite;
+  animation: glow-twinkle var(--duration) ease-in-out var(--delay) infinite;
 }
 .light-strand::before { top: 42%; }
 .light-strand::after {
@@ -164,44 +164,43 @@ button, input, select, textarea { font: inherit; }
   --sparkle-size: 4px;
   --strand-width: 1.25px;
 }
-.hero-sparkle {
-  position: absolute;
-  top: var(--y);
-  left: var(--x);
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #f4c484;
-  box-shadow:
-    0 0 4px rgba(255, 220, 166, 1),
-    0 0 14px rgba(239, 189, 124, .9),
-    0 0 28px rgba(224, 150, 111, .5);
-  animation: hero-twinkle var(--duration) ease-in-out var(--delay) infinite;
-  will-change: opacity, transform;
+
+/* A minority of strand endpoints catch the light like cut crystal. */
+.star-four::after,
+.star-six::after {
+  width: var(--flare-size, 8px);
+  height: var(--flare-size, 8px);
+  border-radius: 0;
+  background: linear-gradient(135deg, #f6cf91, #dc927d);
+  box-shadow: none;
+  filter:
+    drop-shadow(0 0 2px rgba(255, 217, 157, .8))
+    drop-shadow(0 0 6px rgba(224, 172, 105, .5));
+  animation: crystal-twinkle var(--duration) ease-in-out var(--delay) infinite;
 }
-.hero-sparkle.rose {
-  background: #dc927d;
-  box-shadow:
-    0 0 4px rgba(246, 190, 151, .95),
-    0 0 14px rgba(220, 146, 125, .85),
-    0 0 27px rgba(196, 96, 100, .42);
+.star-four::after {
+  clip-path: polygon(50% 0, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0 50%, 42% 42%);
+}
+.star-six::after {
+  --flare-size: 7px;
+  clip-path: polygon(50% 0, 57% 37%, 82% 18%, 63% 43%, 100% 50%, 63% 57%, 82% 82%, 57% 63%, 50% 100%, 43% 63%, 18% 82%, 37% 57%, 0 50%, 37% 43%, 18% 18%, 43% 37%);
 }
 @keyframes strand-shimmer {
   0%, 100% { opacity: var(--strand-opacity-low); transform: translateX(0) scaleY(.995); }
   43% { opacity: var(--strand-opacity); transform: translateX(.5px) scaleY(1); }
   71% { opacity: calc(var(--strand-opacity) * .8); transform: translateX(-.35px) scaleY(.998); }
 }
-@keyframes star-twinkle {
-  0%, 35%, 100% { opacity: .2; transform: translateX(-50%) rotate(45deg) scale(.58); }
-  43% { opacity: 1; transform: translateX(-50%) rotate(45deg) scale(1.35); }
-  50% { opacity: .38; transform: translateX(-50%) rotate(45deg) scale(.72); }
-  76% { opacity: .65; transform: translateX(-50%) rotate(45deg) scale(.95); }
+@keyframes glow-twinkle {
+  0%, 38%, 100% { opacity: .3; transform: translateX(-50%) rotate(45deg) scale(.92); }
+  48% { opacity: .72; transform: translateX(-50%) rotate(45deg) scale(1.06); }
+  63% { opacity: .42; transform: translateX(-50%) rotate(45deg) scale(.96); }
+  82% { opacity: .58; transform: translateX(-50%) rotate(45deg) scale(1); }
 }
-@keyframes hero-twinkle {
-  0%, 58%, 100% { opacity: .15; transform: scale(.55) rotate(0); }
-  64% { opacity: 1; transform: scale(1.45) rotate(45deg); }
-  70% { opacity: .28; transform: scale(.7) rotate(65deg); }
-  84% { opacity: .7; transform: scale(1) rotate(90deg); }
+@keyframes crystal-twinkle {
+  0%, 44%, 100% { opacity: .28; transform: translateX(-50%) scale(.9); }
+  51% { opacity: .88; transform: translateX(-50%) scale(1.15); }
+  59% { opacity: .4; transform: translateX(-50%) scale(.95); }
+  78% { opacity: .62; transform: translateX(-50%) scale(1.03); }
 }
 .flourish { margin-bottom: 52px; font: 2rem var(--serif); }
 .flourish i {
@@ -303,7 +302,19 @@ summary span { transition: transform .25s; }
   }
   .light-strand:nth-child(6n) { display: none; }
   .depth-front { --sparkle-size: 3.5px; }
-  .hero-sparkle { width: 4px; height: 4px; }
+  .star-mobile-glow::after {
+    width: var(--sparkle-size);
+    height: var(--sparkle-size);
+    border-radius: 50%;
+    background: #f2bd78;
+    clip-path: none;
+    filter: none;
+    box-shadow:
+      0 0 3px rgba(255, 211, 151, .95),
+      0 0 var(--glow-size) rgba(239, 189, 124, .88),
+      0 0 var(--glow-spread) rgba(205, 116, 101, .42);
+    animation-name: glow-twinkle;
+  }
   .display { font-size: 2.9rem; }
   .story { grid-template-columns: 1fr; }
   .story-photo { min-height: 65vh; }
@@ -330,5 +341,5 @@ summary span { transition: transform .25s; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-  .light-strand, .light-strand::before, .light-strand::after, .hero-sparkle { animation: none; }
+  .light-strand, .light-strand::before, .light-strand::after { animation: none; }
 }
