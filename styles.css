@@ -89,53 +89,40 @@ button, input, select, textarea { font: inherit; }
 .envelope-back {
   position: absolute;
   inset: 0;
-  z-index: 0;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 20% 8%, rgba(255,246,215,.2), transparent 40%),
-    linear-gradient(145deg, #d7b872 0%, #caa65f 54%, #b58e49 100%);
-  box-shadow: inset 0 0 18px rgba(87,55,20,.12);
+    radial-gradient(ellipse at 23% 10%, rgba(246,235,208,.16), transparent 42%),
+    linear-gradient(145deg, #d9c08e, #ccb17b 48%, #b99a65);
+  box-shadow: inset 0 0 25px rgba(91,57,22,.18);
 }
-.envelope-fold {
+.envelope-front {
   position: absolute;
   inset: 0;
   z-index: 4;
   overflow: hidden;
-}
-.envelope-fold-left {
-  clip-path: polygon(0 0, 54% 54%, 0 100%);
-  background: linear-gradient(133deg, #d2b16b 0%, #c39e58 58%, #b18744 100%);
-  box-shadow: inset -1px 0 rgba(255,238,196,.2);
-}
-.envelope-fold-right {
-  clip-path: polygon(100% 0, 46% 54%, 100% 100%);
-  background: linear-gradient(227deg, #c7a25d 0%, #b98f49 62%, #a67b38 100%);
-  box-shadow: inset 1px 0 rgba(255,235,190,.13);
-}
-.envelope-fold-bottom {
-  z-index: 5;
-  clip-path: polygon(0 100%, 50% 53%, 100% 100%);
-  background: linear-gradient(12deg, #b38a45 0%, #c7a25d 50%, #b08742 100%);
-  box-shadow: inset 0 1px rgba(244,218,165,.16);
+  background:
+    linear-gradient(155deg, transparent 49.7%, #c8ab74 50%, #ad8d5c 100%) left/50% 100% no-repeat,
+    linear-gradient(205deg, transparent 49.7%, #d3b984 50%, #b79863 100%) right/50% 100% no-repeat,
+    linear-gradient(35deg, transparent 49.5%, #cdb17a 50%, #ab8958 100%) bottom/100% 57% no-repeat;
 }
 .envelope-flap {
   position: absolute;
   inset: 0;
   z-index: 6;
   overflow: hidden;
-  clip-path: polygon(0 0,100% 0,50% 42%);
+  clip-path: polygon(0 0,100% 0,50% 45%);
   background:
-    radial-gradient(ellipse at 17% 2%, rgba(255,246,215,.28), transparent 42%),
-    linear-gradient(157deg, #dec07a 0%, #cda961 56%, #b68c46 100%);
-  box-shadow: inset 0 1px rgba(255,240,201,.36);
+    radial-gradient(ellipse at 20% 3%, rgba(247,237,211,.2), transparent 42%),
+    linear-gradient(160deg, #d9c28f 0%, #cbb07a 68%, #b29260 100%);
+  box-shadow: inset 0 1px rgba(255,240,207,.48);
   transform-origin: top;
   transition: transform .9s cubic-bezier(.6,0,.3,1), z-index 0s .45s;
 }
 .envelope-back::before,
-.envelope-fold::before,
+.envelope-front::before,
 .envelope-flap::before,
 .envelope-back::after,
-.envelope-fold::after,
+.envelope-front::after,
 .envelope-flap::after {
   content: "";
   position: absolute;
@@ -143,35 +130,38 @@ button, input, select, textarea { font: inherit; }
   pointer-events: none;
 }
 .envelope-back::before,
-.envelope-fold::before,
+.envelope-front::before,
 .envelope-flap::before {
-  opacity: .42;
+  opacity: .3;
   background:
-    linear-gradient(112deg, transparent 12%, rgba(255,243,207,.17) 33%, transparent 50%),
-    radial-gradient(circle at 17% 23%, rgba(255,244,207,.34) 0 .6px, transparent 1px),
-    radial-gradient(circle at 63% 72%, rgba(244,218,164,.28) 0 .55px, transparent .95px),
-    radial-gradient(circle at 84% 31%, rgba(255,237,194,.3) 0 .5px, transparent .9px);
-  background-size: 100% 100%, 89px 79px, 127px 103px, 151px 131px;
+    linear-gradient(112deg, transparent 18%, rgba(255,247,223,.16) 35%, transparent 49%),
+    radial-gradient(circle at 17% 23%, rgba(255,247,220,.28) 0 .55px, transparent .9px),
+    radial-gradient(circle at 63% 72%, rgba(245,225,183,.2) 0 .5px, transparent .85px),
+    radial-gradient(circle at 84% 31%, rgba(255,242,210,.22) 0 .45px, transparent .8px);
+  background-size: 100% 100%, 97px 83px, 131px 109px, 157px 137px;
   mix-blend-mode: soft-light;
 }
 .envelope-back::after,
-.envelope-fold::after,
+.envelope-front::after,
 .envelope-flap::after {
-  opacity: .56;
+  opacity: .42;
   background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 420 280' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='stock'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.16 .48' numOctaves='4' seed='41' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='.42 0 0 0 .52 0 .37 0 0 .42 0 0 .28 0 .25 0 0 0 .26 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23stock)' opacity='.34'/%3E%3Cg fill='none' stroke='%23f6e4b5' stroke-width='.42' opacity='.48'%3E%3Cpath d='M2 19c38 2 68-3 102 1s67-1 105 2 69-3 110 1 68-1 101 2M5 54c44-3 77 2 119-1s75 3 118 0 79 2 174-1M0 99c37 3 72-2 113 1s80-2 121 1 79-3 186 0M7 151c45-2 81 2 123-1s78 2 119 0 78 3 167-1M1 207c47 3 84-2 132 1s85-2 130 1 82-3 157 0M5 257c42-2 80 2 124-1s83 2 129 0 84 2 158-1'/%3E%3Cpath d='M32 0c-2 38 3 74 0 112s2 77-1 168M97 0c3 42-2 80 1 119s-2 78 1 161M181 0c-2 37 2 72-1 111s3 81 0 169M269 0c3 41-2 79 1 118s-2 78 1 162M356 0c-2 39 3 76 0 115s2 78-1 165' opacity='.62'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: cover;
-  mix-blend-mode: overlay;
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 420 280' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='stock'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.22 .65' numOctaves='3' seed='29' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='.34 0 0 0 .56 0 .3 0 0 .5 0 0 .22 0 .38 0 0 0 .2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23stock)' opacity='.23'/%3E%3Cg fill='none' stroke='%23f4e5bd' stroke-width='.34' opacity='.34'%3E%3Cpath d='M9 18l87 2M24 55l141 3M5 104l118-1M170 31l132 2M230 88l174 3M16 177l161 2M201 154l198-2M70 244l188 3M286 226l121 1'/%3E%3Cpath d='M31 4l2 87M114 28l3 138M197 5l1 104M279 63l3 180M365 12l2 139' opacity='.55'/%3E%3C/g%3E%3C/svg%3E"),
+    repeating-linear-gradient(89deg, transparent 0 3px, rgba(247,235,207,.075) 4px, transparent 5px 9px);
+  background-size: cover, 11px 100%;
+  mix-blend-mode: soft-light;
 }
+.envelope-front::before,
+.envelope-front::after { clip-path: polygon(0 0,50% 59%,100% 0,100% 100%,0 100%); }
 .envelope-flap::before,
-.envelope-flap::after { clip-path: polygon(0 0,100% 0,50% 42%); }
+.envelope-flap::after { clip-path: polygon(0 0,100% 0,50% 45%); }
 .seal {
   position: absolute;
   z-index: 7;
   left: 50%;
-  top: 42%;
-  width: 58px;
-  height: 58px;
+  top: 51%;
+  width: 64px;
+  height: 64px;
   transform: translate(-50%,-50%) rotate(-4deg);
   transition: opacity .3s .25s, transform .5s;
 }
@@ -205,11 +195,6 @@ button, input, select, textarea { font: inherit; }
   stroke: rgba(34,4,10,.46);
   stroke-width: 1;
   opacity: .58;
-}
-.seal-gold-ring {
-  fill: none;
-  stroke: rgba(224,172,105,.7);
-  stroke-width: .85;
 }
 .wax-letter {
   font-family: var(--serif);
