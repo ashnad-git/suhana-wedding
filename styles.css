@@ -17,9 +17,19 @@ button, input, select, textarea { font: inherit; }
 .grain { position: fixed; inset: 0; z-index: 100; opacity: .055; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E"); }
 
 .intro { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; align-content: center; gap: 3vh; overflow: hidden; color: #e0ac69; background: linear-gradient(145deg, #591321 0%, var(--forest) 52%, #480d19 100%); transition: opacity 1s .5s, visibility 1s .5s; }
-.intro::before, .intro::after { content: ""; position: absolute; width: 50vw; height: 50vw; border: 1px solid rgba(224,172,105,.16); border-radius: 50%; }
+.intro::before, .intro::after {
+  content: "";
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  max-width: 620px;
+  max-height: 620px;
+  opacity: .13;
+  background: center/contain no-repeat url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23e0ac69' stroke-width='1.15'%3E%3Cpath d='M18 482V196C18 98 98 18 196 18h286'/%3E%3Cpath d='M44 482V204C44 116 116 44 204 44h278'/%3E%3Cpath d='M70 482V214c0-79 65-144 144-144h268'/%3E%3Cpath d='M18 314h154c78 0 142-64 142-142V18'/%3E%3Cpath d='M18 352h176c88 0 158-71 158-158V18'/%3E%3Cpath d='M102 482V266c0-48 39-87 87-87 48 0 87 39 87 87v216'/%3E%3Cpath d='M130 482V272c0-33 26-59 59-59s59 26 59 59v210'/%3E%3Cpath d='M18 424h80M18 396h80M396 18v80M424 18v80'/%3E%3Cpath d='M76 124l48-48 48 48-48 48zM328 76l48-48 48 48-48 48z'/%3E%3Cpath d='M100 124l24-24 24 24-24 24zM352 76l24-24 24 24-24 24z'/%3E%3Cpath d='M286 18c0 28 22 50 50 50M18 286c28 0 50 22 50 50'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
 .intro::before { top: -30vw; left: -20vw; }
-.intro::after { bottom: -34vw; right: -20vw; }
+.intro::after { right: -20vw; bottom: -34vw; transform: rotate(180deg); }
 .intro.opened { opacity: 0; visibility: hidden; }
 .intro-copy { text-align: center; transition: opacity .45s, transform .7s; }
 .intro.opening .intro-copy, .intro.opening .open-label { opacity: 0; transform: translateY(-15px); }
