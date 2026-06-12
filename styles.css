@@ -80,8 +80,8 @@ button, input, select, textarea { font: inherit; }
   font-style: normal;
   font-weight: 400;
   text-anchor: middle;
-  fill: rgba(61,7,17,.64);
-  stroke: rgba(155,61,75,.22);
+  fill: #e0ac69;
+  stroke: rgba(89,38,20,.38);
   stroke-width: .35;
 }
 .wax-letter-s { transform: translateX(1px) rotate(-6deg); transform-origin: 40px 54px; }
