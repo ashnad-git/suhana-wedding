@@ -71,6 +71,9 @@ button, input, select, textarea { font: inherit; }
 .scroll-cue span { width: 34px; height: 1px; background: white; }
 .paper { background: var(--paper); }
 .welcome {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   min-height: 95vh;
   padding: 14vh 20px;
   display: flex;
@@ -78,8 +81,75 @@ button, input, select, textarea { font: inherit; }
   align-items: center;
   justify-content: center;
   color: #e0ac69;
-  background: var(--forest);
+  background: linear-gradient(145deg, #591321 0%, var(--forest) 52%, #480d19 100%);
   text-align: center;
+}
+.welcome > :not(.luxury-lights) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Reusable, CSS-only canopy of subtle wedding starlights. */
+.luxury-lights {
+  --strand-opacity: .34;
+  --strand-opacity-low: .22;
+  --glow-size: 7px;
+  --glow-spread: 13px;
+  position: absolute;
+  z-index: 0;
+  inset: 0 0 auto;
+  height: min(25vh, 260px);
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%);
+}
+.light-strand {
+  position: absolute;
+  top: 0;
+  left: var(--x);
+  width: 1px;
+  height: var(--length);
+  opacity: var(--strand-opacity);
+  background: linear-gradient(
+    to bottom,
+    rgba(224, 172, 105, .05),
+    rgba(244, 196, 132, .72) 55%,
+    rgba(214, 137, 112, .18)
+  );
+  box-shadow: 0 0 3px rgba(224, 172, 105, .22);
+  transform-origin: top;
+  animation: strand-shimmer var(--duration) ease-in-out var(--delay) infinite;
+  will-change: opacity, transform;
+}
+.light-strand::before,
+.light-strand::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #efbd7c;
+  box-shadow:
+    0 0 var(--glow-size) rgba(239, 189, 124, .7),
+    0 0 var(--glow-spread) rgba(205, 116, 101, .25);
+  transform: translateX(-50%) rotate(45deg);
+  animation: star-twinkle var(--duration) ease-in-out var(--delay) infinite;
+}
+.light-strand::before { top: 42%; }
+.light-strand::after {
+  top: 88%;
+  animation-delay: calc(var(--delay) - 5s);
+}
+@keyframes strand-shimmer {
+  0%, 100% { opacity: var(--strand-opacity-low); transform: translateX(0) scaleY(.99); }
+  50% { opacity: var(--strand-opacity); transform: translateX(.5px) scaleY(1); }
+}
+@keyframes star-twinkle {
+  0%, 42%, 100% { opacity: .18; transform: translateX(-50%) rotate(45deg) scale(.65); }
+  48% { opacity: .9; transform: translateX(-50%) rotate(45deg) scale(1.15); }
+  54% { opacity: .3; transform: translateX(-50%) rotate(45deg) scale(.75); }
 }
 .flourish { margin-bottom: 52px; font: 2rem var(--serif); }
 .flourish i {
@@ -171,6 +241,16 @@ summary span { transition: transform .25s; }
   .hero-date { font-size: .6rem; }
   .scroll-cue { right: auto; left: 50%; transform: translateX(-50%); white-space: nowrap; }
   .welcome { min-height: 100vh; }
+  .luxury-lights {
+    --strand-opacity: .26;
+    --strand-opacity-low: .16;
+    --glow-size: 4px;
+    --glow-spread: 8px;
+    height: min(21vh, 180px);
+  }
+  .light-strand:nth-child(2n),
+  .light-strand:nth-child(5),
+  .light-strand:nth-child(11) { display: none; }
   .display { font-size: 2.9rem; }
   .story { grid-template-columns: 1fr; }
   .story-photo { min-height: 65vh; }
@@ -197,4 +277,5 @@ summary span { transition: transform .25s; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .light-strand, .light-strand::before, .light-strand::after { animation: none; }
 }
