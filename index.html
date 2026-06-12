@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2ede3">
+  <title>Suhana & Deepak</title>
+  <meta name="description" content="The wedding of Suhana and Deepak">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@300;400;500&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="locked">
+  <div class="grain" aria-hidden="true"></div>
+
+  <section class="intro" id="intro" aria-label="Open invitation">
+    <div class="intro-copy">
+      <p class="eyebrow">Together with their families</p>
+      <h1><span data-bride>Suhana</span> <i>&</i> <span data-groom>Deepak</span></h1>
+    </div>
+    <button class="envelope" id="openInvite" aria-label="Open the wedding invitation">
+      <span class="envelope-back"></span>
+      <span class="card">
+        <small>You are cordially invited</small>
+        <b><span data-initials>SD</span></b>
+      </span>
+      <span class="envelope-front"></span>
+      <span class="envelope-flap"></span>
+      <span class="seal"><span data-initials>SD</span></span>
+    </button>
+    <p class="open-label">Tap to open</p>
+  </section>
+
+  <main id="site" aria-hidden="true">
+    <nav class="nav">
+      <a class="nav-mark" href="#home" data-initials>SD</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><span></span><span></span></button>
+      <div class="nav-links" id="navLinks">
+        <a href="#story">Our story</a>
+        <a href="#details">Details</a>
+        <a href="#rsvp">RSVP</a>
+      </div>
+    </nav>
+
+    <section class="hero" id="home">
+      <div class="hero-image parallax"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow light">We are getting married</p>
+        <h2><span data-bride>Suhana</span><i>&</i><span data-groom>Deepak</span></h2>
+        <p class="hero-date" data-date-long>19 September 2026 · Dubai</p>
+      </div>
+      <a class="scroll-cue" href="#welcome"><span></span>Scroll to begin</a>
+    </section>
+
+    <section class="welcome paper" id="welcome">
+      <div class="flourish reveal">S <i>&</i> D</div>
+      <p class="eyebrow reveal">A celebration of love</p>
+      <h2 class="display reveal">It would mean the world<br>to celebrate with you.</h2>
+      <p class="body-copy reveal">Please join us for an evening filled with joy, laughter, good food, and a little dancing as we begin our next chapter.</p>
+      <div class="date-lockup reveal">
+        <span>SAT</span>
+        <strong data-day>12</strong>
+        <span>SEP</span>
+      </div>
+    </section>
+
+    <section class="story" id="story">
+      <div class="story-photo image-panel"></div>
+      <div class="story-copy">
+        <p class="eyebrow reveal">How it started</p>
+        <h2 class="display reveal">One ordinary day,<br>everything changed.</h2>
+        <p class="body-copy reveal">A chance introduction became a long conversation. That conversation became many more, and somewhere between shared meals, missed exits, and countless cups of coffee, we found home in each other.</p>
+        <p class="script reveal">The best is yet to come.</p>
+      </div>
+    </section>
+
+    <section class="countdown image-section">
+      <div class="countdown-inner">
+        <p class="eyebrow light reveal">Counting down to</p>
+        <h2 class="display light reveal" data-date-title>September 19, 2026</h2>
+        <div class="timer reveal" aria-label="Wedding countdown">
+          <div><strong id="days">000</strong><span>Days</span></div>
+          <div><strong id="hours">00</strong><span>Hours</span></div>
+          <div><strong id="minutes">00</strong><span>Minutes</span></div>
+          <div><strong id="seconds">00</strong><span>Seconds</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="details paper" id="details">
+      <div class="section-heading reveal">
+        <p class="eyebrow">The celebration</p>
+        <h2 class="display">When & where</h2>
+      </div>
+      <div class="event-grid">
+        <article class="event-card reveal">
+          <span class="card-number">01</span>
+          <p class="eyebrow">The ceremony</p>
+          <h3>Garden vows</h3>
+          <p>Saturday, 19 September 2026<br>4:30 in the afternoon</p>
+          <div class="line"></div>
+          <p><b data-venue>The Secret Garden</b><br><span data-location>Dubai, United Arab Emirates</span></p>
+          <a class="text-link map-link" href="https://maps.google.com" target="_blank" rel="noreferrer">View on map ↗</a>
+        </article>
+        <article class="event-card dark reveal">
+          <span class="card-number">02</span>
+          <p class="eyebrow light">The reception</p>
+          <h3>Dinner & dancing</h3>
+          <p>Cocktails from 6:00<br>Dinner to follow</p>
+          <div class="line"></div>
+          <p>Please stay for a candlelit dinner, heartfelt toasts, and dancing beneath the stars.</p>
+          <span class="attire">Dress code · Formal</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="schedule">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Order of events</p>
+        <h2 class="display">The day unfolds</h2>
+      </div>
+      <ol class="timeline">
+        <li class="reveal"><time>4:00</time><span>Guest arrival</span></li>
+        <li class="reveal"><time>4:30</time><span>Ceremony</span></li>
+        <li class="reveal"><time>5:30</time><span>Garden cocktails</span></li>
+        <li class="reveal"><time>7:00</time><span>Dinner & toasts</span></li>
+        <li class="reveal"><time>9:00</time><span>Dancing</span></li>
+      </ol>
+    </section>
+
+    <section class="rsvp image-section" id="rsvp">
+      <div class="rsvp-card reveal">
+        <p class="eyebrow">Kindly respond</p>
+        <h2 class="display">Will you join us?</h2>
+        <p>We hope you can celebrate with us. Please reply by 15 August 2026.</p>
+        <form id="rsvpForm">
+          <label>Full name<input required name="name" autocomplete="name" placeholder="Your name"></label>
+          <label>Email address<input required type="email" name="email" autocomplete="email" placeholder="you@example.com"></label>
+          <fieldset>
+            <legend>Will you be attending?</legend>
+            <label class="radio"><input required type="radio" name="attending" value="yes"><span>Joyfully accepts</span></label>
+            <label class="radio"><input type="radio" name="attending" value="no"><span>Regretfully declines</span></label>
+          </fieldset>
+          <label>Number of guests<select name="guests"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+          <label>Dietary notes<textarea name="notes" rows="2" placeholder="Allergies or dietary requirements"></textarea></label>
+          <button class="button" type="submit">Send response</button>
+          <p class="form-message" id="formMessage" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="faq paper">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Good to know</p>
+        <h2 class="display">A few details</h2>
+      </div>
+      <div class="accordion">
+        <details class="reveal"><summary>What should I wear?<span>+</span></summary><p>Formal attire. The celebration will take place partly outdoors, so comfortable shoes are encouraged.</p></details>
+        <details class="reveal"><summary>May I bring a guest?<span>+</span></summary><p>Your invitation will indicate the number of seats reserved in your honor.</p></details>
+        <details class="reveal"><summary>Are children invited?<span>+</span></summary><p>We love your little ones, but our celebration will be an adults-only evening.</p></details>
+        <details class="reveal"><summary>Where can I park?<span>+</span></summary><p>Complimentary valet parking will be available at the venue entrance.</p></details>
+      </div>
+    </section>
+
+    <footer class="closing">
+      <div class="closing-image"></div>
+      <div class="closing-copy reveal">
+        <p class="eyebrow light">With love</p>
+        <h2><span data-bride>Suhana</span> <i>&</i> <span data-groom>Deepak</span></h2>
+        <p>We cannot wait to celebrate with you.</p>
+      </div>
+      <p class="credit">Made for a beautiful beginning</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
