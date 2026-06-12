@@ -48,35 +48,40 @@ button, input, select, textarea { font: inherit; }
   z-index: 7;
   left: 50%;
   top: 51%;
-  width: 66px;
-  height: 66px;
-  display: grid;
-  place-items: center;
-  color: #d7a45f;
-  background:
-    radial-gradient(circle at 36% 28%, rgba(255,210,148,.24), transparent 22%),
-    radial-gradient(circle at 62% 68%, #681624 0%, #54101c 55%, #350810 100%);
-  clip-path: polygon(50% 0%, 60% 4%, 70% 2%, 78% 9%, 88% 12%, 91% 22%, 98% 30%, 96% 41%, 100% 50%, 95% 60%, 97% 70%, 88% 77%, 85% 88%, 74% 90%, 66% 97%, 55% 95%, 45% 100%, 35% 96%, 24% 98%, 17% 89%, 8% 84%, 8% 73%, 1% 65%, 4% 54%, 0% 45%, 5% 35%, 3% 25%, 12% 18%, 17% 8%, 28% 7%, 38% 1%);
-  box-shadow:
-    inset 0 0 0 2px rgba(224,172,105,.3),
-    inset 4px 5px 8px rgba(255,205,145,.16),
-    inset -5px -6px 10px rgba(28,0,6,.5),
-    0 5px 8px rgba(25,1,6,.42);
-  font: 1.18rem var(--serif);
-  letter-spacing: .08em;
-  text-shadow: 0 1px rgba(255,215,158,.18), 0 -1px #26040a;
+  width: 74px;
+  height: 74px;
+  filter: drop-shadow(0 5px 5px rgba(25,1,6,.48));
   transform: translate(-50%,-50%) rotate(-4deg);
   transition: opacity .3s .25s, transform .5s;
 }
-.seal::before {
-  content: "";
-  position: absolute;
-  inset: 9px;
-  border: 1px solid rgba(224,172,105,.48);
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 2px rgba(42,5,13,.26);
+.royal-seal { display: block; width: 100%; height: 100%; overflow: visible; }
+.seal-wax-grain { opacity: .62; }
+.seal-ring {
+  fill: none;
+  stroke: url("#antiqueGold");
+  filter: url("#goldRelief");
 }
-.seal span { position: relative; z-index: 1; }
+.seal-ring-outer { stroke-width: 1.15; }
+.seal-ring-beaded { stroke-width: 1.35; stroke-dasharray: .7 2.1; stroke-linecap: round; }
+.seal-ring-inner { stroke-width: .65; opacity: .82; }
+.seal-center { stroke: rgba(38,4,11,.52); stroke-width: 1.2; }
+.seal-ornament { opacity: .9; }
+.seal-flourish {
+  fill: none;
+  stroke: url("#antiqueGold");
+  stroke-width: .7;
+  stroke-linecap: round;
+  opacity: .76;
+}
+.seal-letter {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 33px;
+  font-style: italic;
+  font-weight: 400;
+  text-anchor: middle;
+}
+.seal-letter-s { transform: translateX(1px) rotate(-7deg); transform-origin: 39px 55px; }
+.seal-letter-d { transform: translateX(-2px) rotate(5deg); transform-origin: 61px 55px; }
 .card { position: absolute; z-index: 2; left: 8%; right: 8%; top: 8%; bottom: 5%; display: grid; place-content: center; gap: 12px; color: #6a1a27; background: radial-gradient(circle at 50% 35%, #f5e6c7 0%, #dfc496 70%, #c9a56c 100%); border: 1px solid #e3bd78; box-shadow: inset 0 0 32px rgba(104,48,18,.15), 0 8px 18px rgba(38,7,12,.2); transition: transform 1s .5s; }
 .card::before, .card::after { content: ""; position: absolute; pointer-events: none; }
 .card::before { inset: 8px; border: 1px solid rgba(111,29,44,.55); }

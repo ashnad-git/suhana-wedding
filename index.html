@@ -27,7 +27,62 @@
       </span>
       <span class="envelope-front"></span>
       <span class="envelope-flap"></span>
-      <span class="seal"><span data-initials>SD</span></span>
+      <span class="seal">
+        <svg class="royal-seal" viewBox="0 0 100 100" aria-hidden="true">
+          <defs>
+            <radialGradient id="waxTone" cx="34%" cy="27%" r="76%">
+              <stop offset="0%" stop-color="#8a2938"/>
+              <stop offset="45%" stop-color="#651522"/>
+              <stop offset="100%" stop-color="#350811"/>
+            </radialGradient>
+            <radialGradient id="waxInset" cx="40%" cy="32%" r="72%">
+              <stop offset="0%" stop-color="#721d2b"/>
+              <stop offset="100%" stop-color="#450c16"/>
+            </radialGradient>
+            <linearGradient id="antiqueGold" x1="18%" y1="10%" x2="82%" y2="90%">
+              <stop offset="0%" stop-color="#f0cf91"/>
+              <stop offset="42%" stop-color="#c99a53"/>
+              <stop offset="72%" stop-color="#8f642f"/>
+              <stop offset="100%" stop-color="#d8ad68"/>
+            </linearGradient>
+            <filter id="pressedWax" x="-25%" y="-25%" width="150%" height="150%">
+              <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="8" result="noise"/>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+            <filter id="waxGrain" x="-15%" y="-15%" width="130%" height="130%">
+              <feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="4" result="grain"/>
+              <feColorMatrix in="grain" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .13 0" result="softGrain"/>
+              <feBlend in="SourceGraphic" in2="softGrain" mode="multiply"/>
+            </filter>
+            <filter id="goldRelief" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx=".5" dy=".8" stdDeviation=".45" flood-color="#23040a" flood-opacity=".75"/>
+              <feDropShadow dx="-.35" dy="-.45" stdDeviation=".25" flood-color="#f4d59b" flood-opacity=".55"/>
+            </filter>
+          </defs>
+          <circle class="seal-wax" cx="50" cy="50" r="46" fill="url(#waxTone)" filter="url(#pressedWax)"/>
+          <circle class="seal-wax-grain" cx="50" cy="50" r="43" fill="url(#waxTone)" filter="url(#waxGrain)"/>
+          <circle class="seal-ring seal-ring-outer" cx="50" cy="50" r="38"/>
+          <circle class="seal-ring seal-ring-beaded" cx="50" cy="50" r="34.5"/>
+          <circle class="seal-center" cx="50" cy="50" r="29" fill="url(#waxInset)"/>
+          <circle class="seal-ring seal-ring-inner" cx="50" cy="50" r="27"/>
+          <g class="seal-ornament" fill="url(#antiqueGold)" filter="url(#goldRelief)">
+            <path d="M50 10.8l1.7 2.7 3.1.8-2.1 2.4.2 3.2-2.9-1.3-2.9 1.3.2-3.2-2.1-2.4 3.1-.8z"/>
+            <path d="M50 89.2l1.7-2.7 3.1-.8-2.1-2.4.2-3.2-2.9 1.3-2.9-1.3.2 3.2-2.1 2.4 3.1.8z"/>
+            <path d="M10.8 50l2.7-1.7.8-3.1 2.4 2.1 3.2-.2-1.3 2.9 1.3 2.9-3.2-.2-2.4 2.1-.8-3.1z"/>
+            <path d="M89.2 50l-2.7-1.7-.8-3.1-2.4 2.1-3.2-.2 1.3 2.9-1.3 2.9 3.2-.2 2.4 2.1.8-3.1z"/>
+            <circle cx="22.5" cy="22.5" r="1.15"/><circle cx="77.5" cy="22.5" r="1.15"/>
+            <circle cx="22.5" cy="77.5" r="1.15"/><circle cx="77.5" cy="77.5" r="1.15"/>
+          </g>
+          <g class="seal-flourish" filter="url(#goldRelief)">
+            <path d="M27 54c5-7 10-7 15-2M73 54c-5-7-10-7-15-2"/>
+            <path d="M29 58c4 3 8 3 12 0M71 58c-4 3-8 3-12 0"/>
+          </g>
+          <g class="seal-monogram" fill="url(#antiqueGold)" filter="url(#goldRelief)">
+            <text class="seal-letter seal-letter-s" x="39" y="64">S</text>
+            <text class="seal-letter seal-letter-d" x="61" y="64">D</text>
+          </g>
+        </svg>
+      </span>
     </button>
     <p class="open-label">Tap to open</p>
   </section>
