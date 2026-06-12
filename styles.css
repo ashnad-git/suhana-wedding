@@ -20,16 +20,19 @@ button, input, select, textarea { font: inherit; }
 .intro::before, .intro::after {
   content: "";
   position: absolute;
-  width: 50vw;
-  height: 50vw;
-  max-width: 620px;
-  max-height: 620px;
-  opacity: .13;
-  background: center/contain no-repeat url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23e0ac69' stroke-width='1.15'%3E%3Cpath d='M18 482V196C18 98 98 18 196 18h286'/%3E%3Cpath d='M44 482V204C44 116 116 44 204 44h278'/%3E%3Cpath d='M70 482V214c0-79 65-144 144-144h268'/%3E%3Cpath d='M18 314h154c78 0 142-64 142-142V18'/%3E%3Cpath d='M18 352h176c88 0 158-71 158-158V18'/%3E%3Cpath d='M102 482V266c0-48 39-87 87-87 48 0 87 39 87 87v216'/%3E%3Cpath d='M130 482V272c0-33 26-59 59-59s59 26 59 59v210'/%3E%3Cpath d='M18 424h80M18 396h80M396 18v80M424 18v80'/%3E%3Cpath d='M76 124l48-48 48 48-48 48zM328 76l48-48 48 48-48 48z'/%3E%3Cpath d='M100 124l24-24 24 24-24 24zM352 76l24-24 24 24-24 24z'/%3E%3Cpath d='M286 18c0 28 22 50 50 50M18 286c28 0 50 22 50 50'/%3E%3C/g%3E%3C/svg%3E");
+  width: clamp(180px, 19vw, 250px);
+  height: clamp(180px, 19vw, 250px);
+  opacity: .32;
+  background: center/contain no-repeat url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23e0ac69' stroke-width='1.15' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 232V56c0-26 21-48 48-48h176'/%3E%3Cpath d='M18 232V60c0-23 19-42 42-42h172'/%3E%3Cpath d='M29 232V68c0-21 17-38 38-38h165'/%3E%3Cpath d='M8 168h52c60 0 108-48 108-108V8'/%3E%3Cpath d='M8 181h56c65 0 117-52 117-117V8'/%3E%3Cpath d='M48 232V128c0-33 27-60 60-60s60 27 60 60v104'/%3E%3Cpath d='M58 232V130c0-28 22-50 50-50s50 22 50 50v102'/%3E%3Cpath d='M77 232v-92c0-17 14-31 31-31s31 14 31 31v92'/%3E%3Cpath d='M108 109c0-11-8-19-19-22 10-3 17-10 19-20 2 10 9 17 19 20-11 3-19 11-19 22z'/%3E%3Cpath d='M48 188c17-5 26-16 29-33M168 48c-5 17-16 26-33 29'/%3E%3Cpath d='M48 203c25-6 39-20 44-44M153 48c-6 25-20 39-44 44'/%3E%3Cpath d='M24 208h24M24 218h24M192 24v24M202 24v24'/%3E%3Cpath d='M55 46c8 0 14-6 14-14M46 55c0 8-6 14-14 14'/%3E%3Cpath d='M84 45c3 8 10 12 19 12-8 4-12 10-12 19-4-8-10-12-19-12 8-4 12-10 12-19z'/%3E%3Cpath d='M45 84c8 3 12 10 12 19 4-8 10-12 19-12-8-4-12-10-12-19-4 8-10 12-19 12z'/%3E%3C/g%3E%3C/svg%3E");
   pointer-events: none;
+  animation: corner-foil 14s ease-in-out infinite;
 }
-.intro::before { top: -30vw; left: -20vw; }
-.intro::after { right: -20vw; bottom: -34vw; transform: rotate(180deg); }
+.intro::before { top: -8px; left: -8px; }
+.intro::after { right: -8px; bottom: -8px; transform: rotate(180deg); animation-delay: -7s; }
+@keyframes corner-foil {
+  0%, 100% { opacity: .28; filter: brightness(.92); }
+  50% { opacity: .36; filter: brightness(1.08); }
+}
 .intro.opened { opacity: 0; visibility: hidden; }
 .intro-copy { text-align: center; transition: opacity .45s, transform .7s; }
 .intro.opening .intro-copy, .intro.opening .open-label { opacity: 0; transform: translateY(-15px); }
@@ -341,6 +344,10 @@ summary span { transition: transform .25s; }
 .reveal.in-view { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 760px) {
+  .intro::before, .intro::after {
+    width: clamp(140px, 43vw, 180px);
+    height: clamp(140px, 43vw, 180px);
+  }
   .intro-copy h1 { font-size: 3.1rem; }
   .envelope { width: 88vw; }
   .nav { height: 66px; padding: 0 22px; mix-blend-mode: normal; }
@@ -394,5 +401,6 @@ summary span { transition: transform .25s; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .intro::before, .intro::after { animation: none; }
   .light-strand, .light-strand::before, .light-strand::after { animation: none; }
 }
