@@ -86,9 +86,55 @@ button, input, select, textarea { font: inherit; }
 .eyebrow { margin: 0 0 20px; font: 500 .68rem/1.4 "Montserrat", sans-serif; letter-spacing: .24em; text-transform: uppercase; }
 .eyebrow.light, .display.light { color: var(--white); }
 .envelope { position: relative; width: min(520px, 84vw); aspect-ratio: 1.52; padding: 0; border: 0; background: transparent; cursor: pointer; perspective: 1000px; filter: drop-shadow(0 28px 34px rgba(26,4,10,.42)); }
-.envelope-back { position: absolute; inset: 0; background: linear-gradient(145deg, #ead09f, #dfbf86 48%, #cda66d); box-shadow: inset 0 0 25px rgba(91,57,22,.18); }
-.envelope-front { position: absolute; inset: 0; z-index: 4; background: linear-gradient(155deg, transparent 49.7%, #dfbf86 50%, #c69e64 100%) left/50% 100% no-repeat, linear-gradient(205deg, transparent 49.7%, #e8ca94 50%, #cda66d 100%) right/50% 100% no-repeat, linear-gradient(35deg, transparent 49.5%, #e2c38c 50%, #c49a5f 100%) bottom/100% 57% no-repeat; filter: saturate(.88); }
-.envelope-flap { position: absolute; inset: 0; z-index: 6; clip-path: polygon(0 0,100% 0,50% 59%); background: linear-gradient(160deg, #ecd3a3 0%, #dfbf86 68%, #c69d63 100%); box-shadow: inset 0 1px rgba(255,240,207,.48); transform-origin: top; transition: transform .9s cubic-bezier(.6,0,.3,1), z-index 0s .45s; }
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 25% 12%, rgba(255,247,220,.22), transparent 38%),
+    linear-gradient(145deg, #ead09f, #dfbf86 48%, #cda66d);
+  box-shadow: inset 0 0 25px rgba(91,57,22,.18);
+}
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  background:
+    linear-gradient(155deg, transparent 49.7%, #dfbf86 50%, #c69e64 100%) left/50% 100% no-repeat,
+    linear-gradient(205deg, transparent 49.7%, #e8ca94 50%, #cda66d 100%) right/50% 100% no-repeat,
+    linear-gradient(35deg, transparent 49.5%, #e2c38c 50%, #c49a5f 100%) bottom/100% 57% no-repeat;
+  filter: saturate(.88);
+}
+.envelope-flap {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+  clip-path: polygon(0 0,100% 0,50% 59%);
+  background:
+    radial-gradient(ellipse at 22% 4%, rgba(255,246,216,.32), transparent 38%),
+    linear-gradient(160deg, #ecd3a3 0%, #dfbf86 68%, #c69d63 100%);
+  box-shadow: inset 0 1px rgba(255,240,207,.48);
+  transform-origin: top;
+  transition: transform .9s cubic-bezier(.6,0,.3,1), z-index 0s .45s;
+}
+.envelope-back::after,
+.envelope-front::after,
+.envelope-flap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .24;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 420 280' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.34 .7' numOctaves='4' seed='23' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='.25 0 0 0 .72 0 .25 0 0 .62 0 0 .18 0 .42 0 0 0 .18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='.2'/%3E%3Cg fill='%23fff3cf' opacity='.22'%3E%3Ccircle cx='37' cy='42' r='.7'/%3E%3Ccircle cx='118' cy='198' r='.55'/%3E%3Ccircle cx='207' cy='73' r='.65'/%3E%3Ccircle cx='332' cy='219' r='.5'/%3E%3Ccircle cx='389' cy='111' r='.6'/%3E%3C/g%3E%3C/svg%3E"),
+    repeating-linear-gradient(88deg, transparent 0 5px, rgba(255,250,229,.08) 6px, transparent 7px 13px);
+  background-size: cover, auto;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+.envelope-front::after { clip-path: polygon(0 0,50% 59%,100% 0,100% 100%,0 100%); opacity: .2; }
+.envelope-flap::after { opacity: .2; }
 .seal {
   position: absolute;
   z-index: 7;
