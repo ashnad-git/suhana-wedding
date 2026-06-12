@@ -75,9 +75,9 @@ button, input, select, textarea { font: inherit; }
   opacity: .72;
 }
 .wax-letter {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--serif);
   font-size: 31px;
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   text-anchor: middle;
   fill: rgba(61,7,17,.64);
