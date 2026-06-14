@@ -25,15 +25,32 @@ $all("[data-date-long]").forEach((el) => {
 
 const intro = document.querySelector("#intro");
 const site = document.querySelector("#site");
-document.querySelector("#openInvite").addEventListener("click", () => {
+const openInvite = document.querySelector("#openInvite");
+const emberField = openInvite.querySelector(".ember-field");
+
+for (let index = 0; index < 46; index += 1) {
+  const angle = (Math.PI * 2 * index) / 46 + ((index % 5) - 2) * .045;
+  const distance = 75 + (index % 9) * 12;
+  const ember = document.createElement("span");
+  ember.className = "ember";
+  ember.style.setProperty("--ember-x", `${Math.cos(angle) * distance}px`);
+  ember.style.setProperty("--ember-y", `${Math.sin(angle) * distance - 18}px`);
+  ember.style.setProperty("--ember-size", `${1.5 + (index % 4) * .8}px`);
+  ember.style.setProperty("--ember-delay", `${.22 + (index % 11) * .055}s`);
+  emberField.append(ember);
+}
+
+openInvite.addEventListener("click", () => {
+  if (intro.classList.contains("opening")) return;
   intro.classList.add("opening");
+  openInvite.disabled = true;
   window.setTimeout(() => {
     intro.classList.add("opened");
     site.classList.add("visible");
     site.setAttribute("aria-hidden", "false");
     document.body.classList.remove("locked");
     document.querySelector(".hero .reveal").classList.add("in-view");
-  }, 1700);
+  }, 3200);
 });
 
 const observer = new IntersectionObserver((entries) => {
