@@ -287,7 +287,10 @@ button, input, select, textarea { font: inherit; }
   align-items: center;
   justify-content: center;
   color: var(--ink);
-  background: linear-gradient(145deg, #e0ac69 0%, #dfbf86 52%, #d7a95e 100%);
+  background:
+    linear-gradient(rgba(224, 172, 105, .06), rgba(215, 169, 94, .06)),
+    url("assets/reception-corners.png") center/100% 100% no-repeat,
+    linear-gradient(145deg, #e0ac69 0%, #dfbf86 52%, #d7a95e 100%);
   text-align: center;
 }
 .reception > :not(.luxury-lights) {
