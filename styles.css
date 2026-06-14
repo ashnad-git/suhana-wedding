@@ -448,10 +448,10 @@ form label:has(textarea), .button, .form-message { grid-column: 1/-1; }
 .button { margin-top: 12px; padding: 17px 30px; border: 1px solid var(--forest); color: white; background: var(--forest); letter-spacing: .16em; text-transform: uppercase; cursor: pointer; transition: .25s; }
 .button:hover { color: var(--forest); background: transparent; }
 .form-message { margin: 0; text-align: center; font-size: .75rem; }
-.closing { position: relative; height: 100svh; min-height: 650px; overflow: hidden; color: white; }
+.closing { position: relative; height: 100svh; min-height: 650px; overflow: hidden; color: #e0ac69; }
 .closing::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(104,20,40,.2),rgba(61,7,21,.72)); }
 .closing-image { background-position: center; filter: saturate(.8); }
-.closing-copy { position: absolute; z-index: 2; inset: 0; display: grid; place-content: center; text-align: center; padding: 20px; }
+.closing-copy { position: absolute; z-index: 2; inset: 0; display: grid; place-content: center; text-align: center; padding: 20px; color: #e0ac69; }
 .closing-copy p:last-child { margin-top: 32px; }
 .credit { position: absolute; z-index: 3; bottom: 25px; width: 100%; text-align: center; font-size: .56rem; letter-spacing: .18em; text-transform: uppercase; }
 .reveal { opacity: 0; transform: translateY(35px); transition: opacity .9s, transform .9s cubic-bezier(.2,.7,.2,1); }
