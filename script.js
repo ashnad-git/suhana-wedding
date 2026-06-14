@@ -33,7 +33,7 @@ document.querySelector("#openInvite").addEventListener("click", () => {
     site.setAttribute("aria-hidden", "false");
     document.body.classList.remove("locked");
     document.querySelector(".hero .reveal").classList.add("in-view");
-  }, 1650);
+  }, 1350);
 });
 
 const observer = new IntersectionObserver((entries) => {
