@@ -20,7 +20,7 @@ $all("[data-date-title]").forEach((el) => {
   el.textContent = weddingDate.toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" });
 });
 $all("[data-date-long]").forEach((el) => {
-  el.textContent = `${weddingDate.toLocaleDateString("en", { day: "numeric", month: "long", year: "numeric" })} · ${wedding.location.split(",")[0]}`;
+  el.textContent = `September 16-19, 2026, ${wedding.location.split(",")[0]}`;
 });
 
 const intro = document.querySelector("#intro");
