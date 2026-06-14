@@ -294,6 +294,47 @@ button, input, select, textarea { font: inherit; }
   position: relative;
   z-index: 1;
 }
+.luxury-lights.reception-lights {
+  --strand-opacity: .42;
+  --strand-opacity-low: .18;
+  height: min(28vh, 285px);
+}
+.reception-lights .depth-back {
+  --strand-opacity: .24;
+  --strand-opacity-low: .11;
+}
+.reception-lights .depth-mid {
+  --strand-opacity: .42;
+  --strand-opacity-low: .18;
+}
+.reception-lights .depth-front {
+  --strand-opacity: .58;
+  --strand-opacity-low: .25;
+}
+.reception-lights .light-strand {
+  background: linear-gradient(
+    to bottom,
+    rgba(90, 23, 35, .06),
+    rgba(90, 23, 35, .64) 48%,
+    rgba(127, 38, 56, .4) 82%,
+    rgba(157, 74, 88, .14)
+  );
+  box-shadow:
+    0 0 3px rgba(90, 23, 35, .28),
+    0 0 8px rgba(127, 38, 56, .12);
+}
+.reception-lights .light-strand::before,
+.reception-lights .light-strand::after {
+  background: #6f1d2c;
+  filter: drop-shadow(0 0 2px rgba(90, 23, 35, .24));
+}
+.reception-lights .star-four::after,
+.reception-lights .star-six::after {
+  background: #7f2638;
+  filter:
+    drop-shadow(0 0 2px rgba(90, 23, 35, .38))
+    drop-shadow(0 0 5px rgba(127, 38, 56, .16));
+}
 
 /* Reusable, CSS-only canopy of layered luxury wedding starlights. */
 .luxury-lights {
