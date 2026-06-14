@@ -90,8 +90,8 @@ button, input, select, textarea { font: inherit; }
 .eyebrow { margin: 0 0 20px; font: 500 .68rem/1.4 "Montserrat", sans-serif; letter-spacing: .24em; text-transform: uppercase; }
 .eyebrow.light, .display.light { color: var(--white); }
 .envelope {
-  --envelope-material: url("assets/envelope-material.svg");
-  --envelope-material-size: 100cqw 57.1066cqw;
+  --envelope-material: url("assets/envelope-material-atlas.png");
+  --envelope-material-size: 100% 100%;
   --envelope-pocket: polygon(0 31%, 50% 60%, 100% 31%, 100% 100%, 0 100%);
   position: relative;
   container-type: inline-size;
@@ -171,7 +171,6 @@ button, input, select, textarea { font: inherit; }
   bottom: 18%;
   width: 50%;
   pointer-events: none;
-  background-position-y: -15.9898cqw;
 }
 .envelope-side-left {
   left: 0;
@@ -179,7 +178,6 @@ button, input, select, textarea { font: inherit; }
 }
 .envelope-side-right {
   right: 0;
-  background-position-x: -50cqw;
   clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 55%);
 }
 .seal {
