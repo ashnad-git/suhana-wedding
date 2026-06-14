@@ -70,7 +70,7 @@ button, input, select, textarea { font: inherit; }
 .intro.opening .intro-copy, .intro.opening .open-label { opacity: 0; transform: translateY(-15px); }
 .intro-copy h1 { margin: 0; font: 4.5rem/1 var(--serif); }
 .intro-copy .eyebrow { margin: 22px 0 0; }
-.intro-copy h1 i, .hero h2 i, .closing h2 i {
+.amp {
   display: inline-block;
   font-family: Georgia, "Times New Roman", serif;
   font-style: normal;
@@ -78,10 +78,14 @@ button, input, select, textarea { font: inherit; }
   font-size: .65em;
   line-height: 1;
 }
-.intro-copy h1 i {
+.intro-copy .amp {
   margin-inline: .08em;
   transform: translateY(.08em);
   vertical-align: middle;
+}
+.section-heading .amp,
+.event-card h3 .amp {
+  transform: translateY(.06em);
 }
 .eyebrow { margin: 0 0 20px; font: 500 .68rem/1.4 "Montserrat", sans-serif; letter-spacing: .24em; text-transform: uppercase; }
 .eyebrow.light, .display.light { color: var(--white); }
@@ -252,7 +256,7 @@ button, input, select, textarea { font: inherit; }
 .hero-content { position: absolute; z-index: 2; left: 5vw; right: 5vw; bottom: 10vh; text-align: center; }
 .hero .eyebrow.light { color: #e0ac69; }
 .hero-content h2, .closing h2 { display: flex; align-items: center; justify-content: center; gap: .22em; margin: 0; font: clamp(4.5rem, 11vw, 10rem)/.8 var(--serif); }
-.hero-content h2 i { transform: translateY(.1em); }
+.hero-content .amp { transform: translateY(.1em); }
 .hero-date { margin-top: 34px; font-size: .72rem; letter-spacing: .23em; text-transform: uppercase; }
 .scroll-cue { position: absolute; z-index: 3; right: 4vw; bottom: 5vh; display: flex; align-items: center; gap: 10px; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; }
 .scroll-cue span { width: 34px; height: 1px; background: currentColor; }
@@ -465,7 +469,7 @@ button, input, select, textarea { font: inherit; }
   64% { opacity: .36; transform: translateX(-50%) scale(.98); }
 }
 .flourish { margin-bottom: 52px; font: 2rem var(--serif); }
-.flourish i {
+.flourish .amp {
   font-family: Georgia, "Times New Roman", serif;
   font-style: normal;
   font-size: .65em;
@@ -573,7 +577,7 @@ form label:has(textarea), .button, .form-message { grid-column: 1/-1; }
   .nav-links.open { transform: translateX(0); }
   .hero-content { bottom: 15vh; }
   .hero-content h2, .closing h2 { flex-direction: column; gap: .05em; font-size: clamp(4rem,20vw,6.5rem); }
-  .hero-content h2 i { margin: -.12em 0; }
+  .hero-content .amp { margin: -.12em 0; }
   .hero-date { font-size: .6rem; }
   .scroll-cue { right: auto; left: 50%; transform: translateX(-50%); white-space: nowrap; }
   .welcome { min-height: 100vh; }
