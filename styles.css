@@ -527,6 +527,13 @@ button, input, select, textarea { font: inherit; }
   border: 1px solid rgba(224, 172, 105, .42);
   pointer-events: none;
 }
+.event-card.dark::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(224, 172, 105, .34);
+  pointer-events: none;
+}
 .card-number { position: absolute; top: 30px; right: 35px; opacity: .55; font: 1rem var(--serif); }
 .line { width: 45px; height: 1px; margin: 28px 0; background: currentColor; opacity: .45; }
 .text-link { align-self: flex-start; margin-top: 25px; padding-bottom: 5px; border-bottom: 1px solid; font-size: .66rem; letter-spacing: .15em; text-transform: uppercase; }
