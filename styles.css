@@ -90,11 +90,11 @@ button, input, select, textarea { font: inherit; }
 .eyebrow { margin: 0 0 20px; font: 500 .68rem/1.4 "Montserrat", sans-serif; letter-spacing: .24em; text-transform: uppercase; }
 .eyebrow.light, .display.light { color: var(--white); }
 .envelope {
-  --envelope-gold: #c7a064;
-  --envelope-texture: url("assets/envelope-paper-texture.png");
-  --envelope-sheen: linear-gradient(135deg, rgba(255,241,207,.28), transparent 38%, rgba(100,61,24,.2));
+  --envelope-material: url("assets/envelope-material.svg");
+  --envelope-material-size: 100cqw 57.1066cqw;
   --envelope-pocket: polygon(0 31%, 50% 60%, 100% 31%, 100% 100%, 0 100%);
   position: relative;
+  container-type: inline-size;
   width: min(520px, 84vw);
   aspect-ratio: 788 / 450;
   padding: 0;
@@ -125,34 +125,24 @@ button, input, select, textarea { font: inherit; }
 .envelope-side {
   position: absolute;
   overflow: hidden;
-  background-color: var(--envelope-gold);
-  background-image: var(--envelope-sheen), var(--envelope-texture);
-  background-size: 100% 100%, 220px 150px;
-  background-blend-mode: soft-light, normal;
+  background-image: var(--envelope-material);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: var(--envelope-material-size);
 }
 .envelope-back {
   z-index: 1;
   inset: 0;
-  box-shadow:
-    inset 0 1px rgba(255,239,205,.7),
-    inset 0 -24px 36px rgba(85,49,18,.2);
 }
 .envelope-inner {
   z-index: 2;
   inset: 0;
   clip-path: polygon(0 31%, 50% 2%, 100% 31%, 100% 75%, 0 75%);
-  box-shadow:
-    inset 0 12px 18px rgba(255,239,204,.16),
-    inset 0 -18px 24px rgba(76,42,14,.24);
 }
 .envelope-front {
   z-index: 5;
   inset: 0;
   clip-path: var(--envelope-pocket);
-  box-shadow:
-    inset 0 1px rgba(255,238,199,.56),
-    inset 0 -22px 30px rgba(84,48,17,.18);
-  filter: drop-shadow(0 -7px 7px rgba(65,35,12,.28));
 }
 .envelope-flap {
   inset: 0;
@@ -168,10 +158,6 @@ button, input, select, textarea { font: inherit; }
     42% 61%,
     38% 56%
   );
-  box-shadow:
-    inset 0 1px rgba(255,240,207,.68),
-    inset 0 -16px 24px rgba(83,47,16,.18),
-    0 8px 10px rgba(61,31,10,.24);
   transform: rotateX(0deg);
   transform-origin: 50% 0;
   backface-visibility: visible;
@@ -179,58 +165,13 @@ button, input, select, textarea { font: inherit; }
     transform .92s cubic-bezier(.58,0,.24,1),
     z-index 0s .46s;
 }
-.envelope-back::before,
-.envelope-inner::before,
-.envelope-front::before,
-.envelope-flap::before,
-.envelope-side::before,
-.envelope-back::after,
-.envelope-inner::after,
-.envelope-front::after,
-.envelope-flap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.envelope-back::before,
-.envelope-inner::before,
-.envelope-front::before,
-.envelope-flap::before,
-.envelope-side::before {
-  opacity: .34;
-  background:
-    linear-gradient(112deg, transparent 18%, rgba(255,247,223,.18) 35%, transparent 50%),
-    radial-gradient(circle at 17% 23%, rgba(255,247,220,.24) 0 .55px, transparent .9px),
-    radial-gradient(circle at 63% 72%, rgba(245,225,183,.18) 0 .5px, transparent .85px);
-  background-size: 100% 100%, 97px 83px, 131px 109px;
-  mix-blend-mode: soft-light;
-}
-.envelope-back::after,
-.envelope-inner::after {
-  opacity: .22;
-  background: linear-gradient(to bottom, rgba(72,37,11,.38), transparent 42%);
-}
-.envelope-front::after {
-  opacity: .55;
-  background:
-    linear-gradient(35deg, transparent 49.2%, rgba(255,234,189,.46) 49.7%, rgba(89,50,17,.28) 50.2%, transparent 50.8%),
-    linear-gradient(325deg, transparent 49.2%, rgba(255,234,189,.42) 49.7%, rgba(89,50,17,.27) 50.2%, transparent 50.8%);
-  background-position: left bottom, right bottom;
-  background-repeat: no-repeat;
-  background-size: 51% 100%;
-}
-.envelope-flap::after {
-  opacity: .38;
-  background: linear-gradient(to bottom, rgba(255,244,215,.2), transparent 52%, rgba(74,38,12,.28));
-}
 .envelope-side {
   z-index: 4;
   top: 28%;
   bottom: 18%;
   width: 50%;
   pointer-events: none;
-  filter: drop-shadow(0 6px 6px rgba(65,34,11,.24));
+  background-position-y: -15.9898cqw;
 }
 .envelope-side-left {
   left: 0;
@@ -238,6 +179,7 @@ button, input, select, textarea { font: inherit; }
 }
 .envelope-side-right {
   right: 0;
+  background-position-x: -50cqw;
   clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 55%);
 }
 .seal {
