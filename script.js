@@ -56,7 +56,7 @@ function updateCountdown() {
     seconds: Math.floor((remaining / 1000) % 60)
   };
   Object.entries(units).forEach(([id, value]) => {
-    document.querySelector(`#${id}`).textContent = String(value).padStart(id === "days" ? 3 : 2, "0");
+    document.querySelector(`#${id}`).textContent = id === "days" ? String(value) : String(value).padStart(2, "0");
   });
 }
 updateCountdown();
