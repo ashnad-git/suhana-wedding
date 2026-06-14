@@ -330,26 +330,26 @@ button, input, select, textarea { font: inherit; }
 }
 .reception-lights .star-four::after,
 .reception-lights .star-six::after {
-  background: #6f1d2c;
+  background: linear-gradient(135deg, #f2eadc, #b9b1a5 52%, #e4d5bd);
   filter:
-    drop-shadow(0 0 2px rgba(72, 13, 25, .48))
-    drop-shadow(0 0 6px rgba(111, 29, 44, .24));
+    drop-shadow(0 0 2px rgba(245, 237, 224, .58))
+    drop-shadow(0 0 6px rgba(188, 178, 164, .3));
 }
 .reception-lights .crystal-glint::after {
   width: 7px;
   height: 10px;
   background:
-    linear-gradient(135deg, rgba(255, 218, 166, .42), transparent 48%),
-    linear-gradient(315deg, #591321, #8a3044 58%, #4a0e1c);
+    linear-gradient(135deg, rgba(255, 250, 239, .82), transparent 45%),
+    linear-gradient(315deg, #98928a, #eee6d8 52%, #b9afa1);
   clip-path: polygon(50% 0, 100% 42%, 72% 100%, 28% 100%, 0 42%);
   filter:
-    drop-shadow(0 0 2px rgba(72, 13, 25, .48))
-    drop-shadow(0 0 7px rgba(111, 29, 44, .26));
+    drop-shadow(0 0 2px rgba(248, 241, 228, .62))
+    drop-shadow(0 0 7px rgba(181, 171, 158, .32));
 }
 .reception-lights .crystal-glint::before {
   width: 6px;
   height: 6px;
-  background: #6f1d2c;
+  background: linear-gradient(135deg, #f1e9dc, #aaa39a 58%, #dfd1bb);
   clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
 }
 
