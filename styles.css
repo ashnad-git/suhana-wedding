@@ -257,8 +257,7 @@ button, input, select, textarea { font: inherit; }
 .scroll-cue { position: absolute; z-index: 3; right: 4vw; bottom: 5vh; display: flex; align-items: center; gap: 10px; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; }
 .scroll-cue span { width: 34px; height: 1px; background: currentColor; }
 .paper { background: var(--paper); }
-.welcome,
-.reception {
+.welcome {
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -272,7 +271,25 @@ button, input, select, textarea { font: inherit; }
   background: linear-gradient(145deg, #591321 0%, var(--forest) 52%, #480d19 100%);
   text-align: center;
 }
-.welcome > :not(.luxury-lights),
+.welcome > :not(.luxury-lights) {
+  position: relative;
+  z-index: 1;
+}
+
+.reception {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 95vh;
+  padding: 14vh 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: linear-gradient(145deg, #e0ac69 0%, #dfbf86 52%, #d7a95e 100%);
+  text-align: center;
+}
 .reception > :not(.luxury-lights) {
   position: relative;
   z-index: 1;
