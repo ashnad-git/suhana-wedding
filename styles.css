@@ -212,7 +212,7 @@ button, input, select, textarea { font: inherit; }
 .card::before, .card::after { content: ""; position: absolute; pointer-events: none; }
 .card::before { inset: 8px; border: 1px solid rgba(111,29,44,.55); }
 .card::after { inset: 13px; border: 1px solid rgba(177,120,54,.7); }
-.card small { letter-spacing: .2em; text-transform: uppercase; }
+.card small { max-width: 290px; line-height: 1.65; letter-spacing: .16em; text-transform: uppercase; }
 .card b { color: #711d2d; font: 3rem var(--serif); text-shadow: 0 1px #f5d9a8; }
 .intro.opening .envelope-flap { z-index: 1; transform: rotateX(180deg); }
 .intro.opening .seal { opacity: 0; transform: translate(-50%,-60%) rotate(-4deg) scale(.7); }
@@ -378,7 +378,7 @@ button, input, select, textarea { font: inherit; }
 .date-lockup { display: flex; align-items: center; gap: 28px; margin-top: 60px; }
 .date-lockup span { padding: 12px 0; border-block: 1px solid currentColor; font-size: .66rem; letter-spacing: .2em; }
 .date-lockup strong { font: 5rem/1 var(--serif); font-weight: 400; }
-.story { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; background: #d9d0c2; }
+.story { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; color: var(--ink); background: #e0ac69; }
 .story-photo { min-height: 750px; background: linear-gradient(rgba(111,29,44,.2),rgba(111,29,44,.2)), url("assets/garden-couple.png") 30% center/cover; background-blend-mode: color; filter: saturate(.75) sepia(.08); }
 .story-copy { padding: 10vw; display: flex; flex-direction: column; justify-content: center; }
 .story-copy .display { font-size: clamp(3rem,5vw,5.7rem); }
