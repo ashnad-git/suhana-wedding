@@ -433,11 +433,6 @@ button, input, select, textarea { font: inherit; }
 .line { width: 45px; height: 1px; margin: 28px 0; background: currentColor; opacity: .45; }
 .text-link { align-self: flex-start; margin-top: 25px; padding-bottom: 5px; border-bottom: 1px solid; font-size: .66rem; letter-spacing: .15em; text-transform: uppercase; }
 .attire { margin-top: 35px; font-size: .67rem; letter-spacing: .17em; text-transform: uppercase; }
-.schedule { padding: 14vh 20px; background: #d8d0c2; }
-.timeline { max-width: 850px; padding: 0; margin: auto; list-style: none; border-top: 1px solid rgba(111,29,44,.35); }
-.timeline li { display: grid; grid-template-columns: 150px 1fr; padding: 30px 5px; border-bottom: 1px solid rgba(111,29,44,.35); align-items: baseline; }
-.timeline time { font: 1.8rem var(--serif); }
-.timeline span { font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; }
 .rsvp { min-height: 110vh; padding: 12vh 20px; display: grid; place-items: center; background-attachment: scroll; }
 .rsvp-card { width: min(700px,94vw); padding: clamp(40px,7vw,80px); color: var(--ink); background: rgba(245,240,230,.96); text-align: center; }
 .rsvp-card > p { line-height: 1.7; }
@@ -453,14 +448,6 @@ form label:has(textarea), .button, .form-message { grid-column: 1/-1; }
 .button { margin-top: 12px; padding: 17px 30px; border: 1px solid var(--forest); color: white; background: var(--forest); letter-spacing: .16em; text-transform: uppercase; cursor: pointer; transition: .25s; }
 .button:hover { color: var(--forest); background: transparent; }
 .form-message { margin: 0; text-align: center; font-size: .75rem; }
-.faq { padding: 14vh 20px; }
-.accordion { max-width: 850px; margin: auto; border-top: 1px solid #a79d8e; }
-details { border-bottom: 1px solid #a79d8e; }
-summary { display: flex; justify-content: space-between; padding: 28px 0; cursor: pointer; list-style: none; font: 1.3rem var(--serif); }
-summary::-webkit-details-marker { display: none; }
-details p { max-width: 650px; margin: -5px 0 30px; line-height: 1.8; }
-details[open] summary span { transform: rotate(45deg); }
-summary span { transition: transform .25s; }
 .closing { position: relative; height: 100svh; min-height: 650px; overflow: hidden; color: white; }
 .closing::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(104,20,40,.2),rgba(61,7,21,.72)); }
 .closing-image { background-position: center; filter: saturate(.8); }
@@ -508,17 +495,15 @@ summary span { transition: transform .25s; }
   .timer { gap: 12px; }
   .timer strong { font-size: 2.1rem; }
   .timer span { font-size: .5rem; letter-spacing: .08em; }
-  .details, .schedule, .faq { padding-block: 12vh; }
+  .details { padding-block: 12vh; }
   .section-heading { margin-bottom: 55px; }
   .event-grid { grid-template-columns: 1fr; }
   .event-card { min-height: 530px; padding: 55px 35px; }
   .event-card h3 { font-size: 2.8rem; }
-  .timeline li { grid-template-columns: 90px 1fr; }
   .rsvp-card { padding: 50px 25px; }
   form { grid-template-columns: 1fr; }
   form > *, fieldset, form label:has(textarea), .button, .form-message { grid-column: 1; }
   fieldset { grid-template-columns: 1fr; }
-  summary { font-size: 1.1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
