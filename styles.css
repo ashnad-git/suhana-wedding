@@ -500,17 +500,29 @@ button, input, select, textarea { font: inherit; }
 .sangeeth-title { display: flex; flex-direction: column; gap: .08em; }
 .details {
   padding: 14vh 7vw;
-  color: var(--ink);
-  background: linear-gradient(145deg, #e0ac69 0%, #dfbf86 52%, #d7a95e 100%);
+  color: #e0ac69;
+  background: linear-gradient(145deg, #591321 0%, var(--forest) 52%, #480d19 100%);
 }
 .section-heading { text-align: center; margin-bottom: 80px; }
 .event-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; }
-.event-card { position: relative; min-height: 620px; padding: clamp(45px,7vw,90px); display: flex; flex-direction: column; justify-content: center; border: 1px solid #bdb29f; }
-.event-card.dark { color: var(--white); border-color: var(--forest); background: var(--forest); }
+.event-card { position: relative; min-height: 620px; padding: clamp(45px,7vw,90px); display: flex; flex-direction: column; justify-content: center; border: 1px solid rgba(224, 172, 105, .82); box-shadow: inset 0 0 0 1px rgba(255, 244, 214, .08), 0 0 26px rgba(25, 4, 10, .08); }
+.event-card.dark { color: var(--white); border-color: rgba(224, 172, 105, .72); background: var(--forest); }
 .event-card .eyebrow { margin-bottom: 30px; }
 .event-card h3 { margin: 0 0 40px; font: 3.2rem var(--serif); font-weight: 400; }
 .event-card p { line-height: 1.9; }
 .event-card b { font-weight: 500; }
+.event-card:not(.dark) {
+  background:
+    linear-gradient(180deg, rgba(255, 247, 225, .92), rgba(243, 229, 199, .96)),
+    linear-gradient(145deg, rgba(224, 172, 105, .14), rgba(215, 169, 94, .06));
+}
+.event-card:not(.dark)::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(224, 172, 105, .42);
+  pointer-events: none;
+}
 .card-number { position: absolute; top: 30px; right: 35px; opacity: .55; font: 1rem var(--serif); }
 .line { width: 45px; height: 1px; margin: 28px 0; background: currentColor; opacity: .45; }
 .text-link { align-self: flex-start; margin-top: 25px; padding-bottom: 5px; border-bottom: 1px solid; font-size: .66rem; letter-spacing: .15em; text-transform: uppercase; }
