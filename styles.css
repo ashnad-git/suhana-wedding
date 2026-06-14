@@ -407,6 +407,7 @@ button, input, select, textarea { font: inherit; }
 .image-section { position: relative; background: linear-gradient(rgba(89,15,34,.62),rgba(64,8,23,.74)), url("assets/garden-couple.png") center/cover fixed; background-blend-mode: multiply; color: white; }
 .countdown { min-height: 80vh; display: grid; place-items: center; text-align: center; }
 .countdown-inner { padding: 100px 20px; }
+.countdown-date { margin: 24px 0 0; }
 .timer { display: grid; grid-template-columns: repeat(4,1fr); gap: clamp(25px,7vw,100px); margin-top: 70px; }
 .timer div { display: grid; gap: 12px; }
 .timer strong { font: clamp(2.4rem,5vw,5rem) var(--serif); font-weight: 400; }
