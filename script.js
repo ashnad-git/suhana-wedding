@@ -86,7 +86,7 @@ document.querySelector("#rsvpForm").addEventListener("submit", (event) => {
   const name = data.get("name").trim().split(" ")[0];
   document.querySelector("#formMessage").textContent =
     data.get("attending") === "yes"
-      ? `Thank you, ${name}. We cannot wait to celebrate with you.`
+      ? `Thank you, ${name}. Eagerly waiting to celebrate with you.`
       : `Thank you for letting us know, ${name}. You will be missed.`;
   event.currentTarget.querySelector(".button").textContent = "Response received";
 });
