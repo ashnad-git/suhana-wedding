@@ -295,45 +295,62 @@ button, input, select, textarea { font: inherit; }
   z-index: 1;
 }
 .luxury-lights.reception-lights {
-  --strand-opacity: .42;
-  --strand-opacity-low: .18;
-  height: min(28vh, 285px);
+  --strand-opacity: .52;
+  --strand-opacity-low: .23;
+  height: min(30vh, 305px);
 }
 .reception-lights .depth-back {
-  --strand-opacity: .24;
-  --strand-opacity-low: .11;
+  --strand-opacity: .32;
+  --strand-opacity-low: .14;
 }
 .reception-lights .depth-mid {
-  --strand-opacity: .42;
-  --strand-opacity-low: .18;
+  --strand-opacity: .52;
+  --strand-opacity-low: .23;
 }
 .reception-lights .depth-front {
-  --strand-opacity: .58;
-  --strand-opacity-low: .25;
+  --strand-opacity: .7;
+  --strand-opacity-low: .31;
 }
 .reception-lights .light-strand {
   background: linear-gradient(
     to bottom,
-    rgba(90, 23, 35, .06),
-    rgba(90, 23, 35, .64) 48%,
-    rgba(127, 38, 56, .4) 82%,
-    rgba(157, 74, 88, .14)
+    rgba(72, 13, 25, .1),
+    rgba(80, 14, 29, .78) 48%,
+    rgba(111, 29, 44, .58) 82%,
+    rgba(130, 45, 62, .22)
   );
   box-shadow:
-    0 0 3px rgba(90, 23, 35, .28),
-    0 0 8px rgba(127, 38, 56, .12);
+    0 0 3px rgba(72, 13, 25, .38),
+    0 0 8px rgba(111, 29, 44, .18);
 }
 .reception-lights .light-strand::before,
 .reception-lights .light-strand::after {
-  background: #6f1d2c;
-  filter: drop-shadow(0 0 2px rgba(90, 23, 35, .24));
+  background: #591321;
+  filter: drop-shadow(0 0 2px rgba(72, 13, 25, .34));
 }
 .reception-lights .star-four::after,
 .reception-lights .star-six::after {
-  background: #7f2638;
+  background: #6f1d2c;
   filter:
-    drop-shadow(0 0 2px rgba(90, 23, 35, .38))
-    drop-shadow(0 0 5px rgba(127, 38, 56, .16));
+    drop-shadow(0 0 2px rgba(72, 13, 25, .48))
+    drop-shadow(0 0 6px rgba(111, 29, 44, .24));
+}
+.reception-lights .crystal-glint::after {
+  width: 7px;
+  height: 10px;
+  background:
+    linear-gradient(135deg, rgba(255, 218, 166, .42), transparent 48%),
+    linear-gradient(315deg, #591321, #8a3044 58%, #4a0e1c);
+  clip-path: polygon(50% 0, 100% 42%, 72% 100%, 28% 100%, 0 42%);
+  filter:
+    drop-shadow(0 0 2px rgba(72, 13, 25, .48))
+    drop-shadow(0 0 7px rgba(111, 29, 44, .26));
+}
+.reception-lights .crystal-glint::before {
+  width: 6px;
+  height: 6px;
+  background: #6f1d2c;
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
 }
 
 /* Reusable, CSS-only canopy of layered luxury wedding starlights. */
@@ -538,6 +555,13 @@ form label:has(textarea), .button, .form-message { grid-column: 1/-1; }
     --strand-opacity: .54;
     --strand-opacity-low: .29;
     height: min(28vh, 245px);
+  }
+  .luxury-lights.reception-lights {
+    height: min(27vh, 235px);
+  }
+  .reception-lights .crystal-glint::after {
+    width: 5px;
+    height: 8px;
   }
   .light-strand:nth-child(6n) { display: none; }
   .depth-back { --star-size: 2px; }
