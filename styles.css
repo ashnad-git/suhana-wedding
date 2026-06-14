@@ -290,25 +290,6 @@ button, input, select, textarea { font: inherit; }
   background: linear-gradient(145deg, #e0ac69 0%, #dfbf86 52%, #d7a95e 100%);
   text-align: center;
 }
-.reception::before,
-.reception::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  background: url("assets/reception-corners.png") center/100% 100% no-repeat;
-  pointer-events: none;
-}
-.reception::before {
-  clip-path: polygon(0 0, 64% 0, 45% 52%, 0 62%);
-  transform: scale(.7);
-  transform-origin: top left;
-}
-.reception::after {
-  clip-path: polygon(100% 38%, 100% 100%, 36% 100%, 55% 48%);
-  transform: scale(.7);
-  transform-origin: bottom right;
-}
 .reception > :not(.luxury-lights) {
   position: relative;
   z-index: 1;
