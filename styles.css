@@ -514,8 +514,7 @@ button, input, select, textarea { font: inherit; }
 .event-card:not(.dark) {
   color: var(--ink);
   background:
-    linear-gradient(180deg, rgba(255, 247, 225, .92), rgba(243, 229, 199, .96)),
-    linear-gradient(145deg, rgba(224, 172, 105, .14), rgba(215, 169, 94, .06));
+    linear-gradient(145deg, #e0ac69 0%, #dfbf86 52%, #d7a95e 100%);
 }
 .event-card.dark {
   color: #e0ac69;
