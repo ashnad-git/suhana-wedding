@@ -639,7 +639,12 @@ form label:has(textarea), .button, .form-message { grid-column: 1/-1; }
 .closing { position: relative; height: 100svh; min-height: 650px; overflow: hidden; color: #e0ac69; }
 .closing::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(104,20,40,.2),rgba(61,7,21,.72)); }
 .closing-image { background-position: center; filter: saturate(.8); }
-.closing-copy { position: absolute; z-index: 2; inset: 0; display: grid; place-content: center; text-align: center; padding: 20px; color: #e0ac69; }
+.closing-copy { position: absolute; z-index: 2; inset: 0; display: grid; place-content: center; text-align: center; padding: 20px; color: #591321; }
+.closing-copy .eyebrow,
+.closing-copy h2,
+.closing-copy p,
+.closing-copy .amp,
+.credit { color: #591321; }
 .closing-copy p:last-child { margin-top: 32px; }
 .credit { position: absolute; z-index: 3; bottom: 25px; width: 100%; text-align: center; font-size: .56rem; letter-spacing: .18em; text-transform: uppercase; }
 .reveal { opacity: 0; transform: translateY(35px); transition: opacity .9s, transform .9s cubic-bezier(.2,.7,.2,1); }

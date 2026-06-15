@@ -2,7 +2,7 @@ const wedding = {
   bride: "Suhana",
   groom: "Deepak",
   date: "2026-09-19T16:30:00+04:00",
-  location: "Vijayanagara, Bangalore",
+  location: "Bangalore",
   venue: "Vijayanagara Club"
 };
 
