@@ -259,14 +259,15 @@
         <p>We hope you can celebrate with us. Please reply by 15 August 2026.</p>
         <form id="rsvpForm">
           <label>Full name<input required name="name" autocomplete="name" placeholder="Your name"></label>
-          <label>Email address<input required type="email" name="email" autocomplete="email" placeholder="you@example.com"></label>
           <fieldset>
             <legend>Will you be attending?</legend>
-            <label class="radio"><input required type="radio" name="attending" value="yes"><span>Joyfully accepts</span></label>
-            <label class="radio"><input type="radio" name="attending" value="no"><span>Regretfully declines</span></label>
+            <label class="radio"><input required type="radio" name="attending" value="sangeeth"><span>Sangeeth</span></label>
+            <label class="radio"><input type="radio" name="attending" value="reception"><span>Reception</span></label>
+            <label class="radio"><input type="radio" name="attending" value="both"><span>Sangeeth &amp; Reception</span></label>
+            <label class="radio"><input type="radio" name="attending" value="none"><span>None</span></label>
           </fieldset>
-          <label>Number of guests<select name="guests"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
-          <label>Dietary notes<textarea name="notes" rows="2" placeholder="Allergies or dietary requirements"></textarea></label>
+          <label>Number of guests - Sangeeth<select name="sangeethGuests"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+          <label>Number of guests - Reception<select name="receptionGuests"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
           <button class="button" type="submit">Send response</button>
           <p class="form-message" id="formMessage" role="status"></p>
         </form>

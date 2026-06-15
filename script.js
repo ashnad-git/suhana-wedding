@@ -101,9 +101,16 @@ document.querySelector("#rsvpForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
   const name = data.get("name").trim().split(" ")[0];
+  const attending = data.get("attending");
+  const attendanceLabel = {
+    sangeeth: "Sangeeth",
+    reception: "Reception",
+    both: "Sangeeth and Reception",
+    none: "no events"
+  }[attending] || "the celebration";
   document.querySelector("#formMessage").textContent =
-    data.get("attending") === "yes"
-      ? `Thank you, ${name}. Eagerly waiting to celebrate with you.`
-      : `Thank you for letting us know, ${name}. You will be missed.`;
+    attending === "none"
+      ? `Thank you for letting us know, ${name}.`
+      : `Thank you, ${name}. We'll note your attendance for ${attendanceLabel}.`;
   event.currentTarget.querySelector(".button").textContent = "Response received";
 });
