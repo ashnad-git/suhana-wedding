@@ -28,8 +28,18 @@ const site = document.querySelector("#site");
 const openInvite = document.querySelector("#openInvite");
 const emberField = openInvite.querySelector(".ember-field");
 const glitterFields = [
-  { el: document.querySelector(".welcome-glitter"), seed: 0x2A4C91, boost: 0.9 },
-  { el: document.querySelector(".reception-glitter"), seed: 0x5A1723, boost: 1.28 }
+  {
+    el: document.querySelector(".welcome-glitter"),
+    seed: 0x2A4C91,
+    boost: 1.05,
+    bandBoosts: [1.45, 1.25, 1.1, 1, 0.9, 0.8]
+  },
+  {
+    el: document.querySelector(".reception-glitter"),
+    seed: 0x5A1723,
+    boost: 1.42,
+    bandBoosts: [1.6, 1.34, 1.12, 1.02, 0.9, 0.82]
+  }
 ].filter(({ el }) => el);
 
 for (let index = 0; index < 46; index += 1) {
@@ -66,7 +76,7 @@ function mulberry32(seed) {
   };
 }
 
-function buildGlitterField(field, seed, boost) {
+function buildGlitterField(field, seed, boost, bandBoosts = []) {
   field.replaceChildren();
 
   const rng = mulberry32(seed);
@@ -91,8 +101,8 @@ function buildGlitterField(field, seed, boost) {
   const lerp = (min, max) => min + (max - min) * rng();
   const easedBandY = (start, end) => start + Math.pow(rng(), 1.25) * (end - start);
 
-  bands.forEach((band) => {
-    const count = Math.max(0, Math.round(band.count * scale));
+  bands.forEach((band, bandIndex) => {
+    const count = Math.max(0, Math.round(band.count * scale * (bandBoosts[bandIndex] || 1)));
     for (let index = 0; index < count; index += 1) {
       const isStar = rng() < band.star;
       const isRare = !isStar && rng() < band.rare;
@@ -100,9 +110,13 @@ function buildGlitterField(field, seed, boost) {
       const y = easedBandY(band.start, band.end);
       const x = lerp(0, 100);
       const tone = y < 10
-        ? (rng() < 0.46 ? "maroon" : rng() < 0.82 ? "gold" : rng() < 0.94 ? "highlight" : "gold")
+        ? (field.classList.contains("reception-glitter")
+          ? (rng() < 0.58 ? "maroon" : rng() < 0.84 ? "gold" : rng() < 0.95 ? "highlight" : "gold")
+          : (rng() < 0.34 ? "maroon" : rng() < 0.8 ? "gold" : rng() < 0.93 ? "highlight" : "gold"))
         : y < 25
-          ? (rng() < 0.34 ? "maroon" : rng() < 0.77 ? "gold" : rng() < 0.9 ? "highlight" : "gold")
+          ? (field.classList.contains("reception-glitter")
+            ? (rng() < 0.46 ? "maroon" : rng() < 0.8 ? "gold" : rng() < 0.92 ? "highlight" : "gold")
+            : (rng() < 0.28 ? "maroon" : rng() < 0.78 ? "gold" : rng() < 0.91 ? "highlight" : "gold"))
           : y < 40
             ? (rng() < 0.26 ? "maroon" : rng() < 0.78 ? "gold" : rng() < 0.92 ? "highlight" : "gold")
             : y < 60
@@ -150,14 +164,14 @@ function buildGlitterField(field, seed, boost) {
   });
 }
 
-glitterFields.forEach(({ el, seed, boost }) => buildGlitterField(el, seed, boost));
+glitterFields.forEach(({ el, seed, boost, bandBoosts }) => buildGlitterField(el, seed, boost, bandBoosts));
 
 let glitterResizeFrame = null;
 window.addEventListener("resize", () => {
   if (!glitterFields.length) return;
   window.cancelAnimationFrame(glitterResizeFrame);
   glitterResizeFrame = window.requestAnimationFrame(() => {
-    glitterFields.forEach(({ el, seed, boost }) => buildGlitterField(el, seed, boost));
+    glitterFields.forEach(({ el, seed, boost, bandBoosts }) => buildGlitterField(el, seed, boost, bandBoosts));
   });
 });
 
