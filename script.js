@@ -161,6 +161,9 @@ function buildGlitterField(field, seed, boost, bandBoosts = [], maxY = 34, maroo
       particle.style.setProperty("--rotate", `${lerp(-18, 18).toFixed(1)}deg`);
       particle.style.setProperty("--twinkle-duration", `${lerp(5.5, 11).toFixed(2)}s`);
       particle.style.setProperty("--twinkle-delay", `${lerp(-11, 0).toFixed(2)}s`);
+      particle.style.setProperty("--fall-distance", `${lerp(34, 58).toFixed(1)}vh`);
+      particle.style.setProperty("--fall-duration", `${lerp(7.5, 13.5).toFixed(2)}s`);
+      particle.style.setProperty("--fall-delay", `${lerp(-13, 0).toFixed(2)}s`);
       field.appendChild(particle);
     }
   });

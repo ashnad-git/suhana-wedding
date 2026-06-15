@@ -503,7 +503,9 @@ main > :is(section, footer)::after {
     0 0 7px rgba(255, 242, 225, calc(var(--opacity) * .18));
   mix-blend-mode: screen;
   transform: translate(-50%, -50%) rotate(var(--rotate, 0deg));
-  animation: glitter-particle-twinkle var(--twinkle-duration, 7s) ease-in-out var(--twinkle-delay, 0s) infinite;
+  animation:
+    glitter-particle-fall var(--fall-duration, 10s) linear var(--fall-delay, 0s) infinite,
+    glitter-particle-twinkle var(--twinkle-duration, 7s) ease-in-out var(--twinkle-delay, 0s) infinite;
   will-change: opacity, transform;
 }
 .welcome-glitter .glitter-particle {
@@ -520,7 +522,9 @@ main > :is(section, footer)::after {
     0 0 7px rgba(255, 242, 225, calc(var(--opacity) * .18));
   mix-blend-mode: screen;
   transform: translate(-50%, -50%) rotate(var(--rotate, 0deg));
-  animation: glitter-particle-twinkle var(--twinkle-duration, 7s) ease-in-out var(--twinkle-delay, 0s) infinite;
+  animation:
+    glitter-particle-fall var(--fall-duration, 10s) linear var(--fall-delay, 0s) infinite,
+    glitter-particle-twinkle var(--twinkle-duration, 7s) ease-in-out var(--twinkle-delay, 0s) infinite;
   will-change: opacity, transform;
 }
 .welcome-glitter .glitter-particle.is-star {
@@ -538,9 +542,13 @@ main > :is(section, footer)::after {
   filter: drop-shadow(0 0 2px rgba(255, 242, 225, .24));
 }
 @keyframes glitter-particle-twinkle {
-  0%, 100% { opacity: calc(var(--opacity) * .72); transform: translate(-50%, -50%) scale(.96) rotate(var(--rotate, 0deg)); }
-  48% { opacity: var(--opacity); transform: translate(-50%, -50%) scale(1) rotate(calc(var(--rotate, 0deg) + 6deg)); }
-  72% { opacity: calc(var(--opacity) * .82); transform: translate(-50%, -50%) scale(.985) rotate(calc(var(--rotate, 0deg) - 4deg)); }
+  0%, 100% { opacity: calc(var(--opacity) * .68); }
+  48% { opacity: var(--opacity); }
+  72% { opacity: calc(var(--opacity) * .82); }
+}
+@keyframes glitter-particle-fall {
+  0% { top: var(--y); }
+  100% { top: calc(var(--y) + var(--fall-distance, 42vh)); }
 }
 
 .reception {
