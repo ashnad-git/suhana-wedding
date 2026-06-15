@@ -120,6 +120,16 @@ const attendingChoices = rsvpForm.querySelectorAll('input[name="attending"]');
 const rsvpExtras = rsvpForm.querySelectorAll("[data-rsvp-extra]");
 const rsvpExtraInputs = rsvpForm.querySelectorAll('[data-rsvp-extra] input, [data-rsvp-extra] select');
 
+function resetRsvpExtras() {
+  rsvpForm.querySelectorAll('select[name="sangeethGuests"], select[name="receptionGuests"]').forEach((select) => {
+    select.value = "0";
+  });
+
+  rsvpForm.querySelectorAll('input[name="foodPreference"], input[name="stayRequired"]').forEach((input) => {
+    input.checked = false;
+  });
+}
+
 function setRsvpExtrasEnabled(enabled) {
   rsvpExtras.forEach((el) => {
     el.classList.toggle("is-disabled", !enabled);
@@ -139,7 +149,13 @@ function setRsvpExtrasEnabled(enabled) {
 
 function syncRsvpExtras() {
   const selected = rsvpForm.querySelector('input[name="attending"]:checked');
-  setRsvpExtrasEnabled(!selected || selected.value !== "none");
+  if (selected && selected.value === "none") {
+    resetRsvpExtras();
+    setRsvpExtrasEnabled(false);
+    return;
+  }
+
+  setRsvpExtrasEnabled(true);
 }
 
 attendingChoices.forEach((input) => {
