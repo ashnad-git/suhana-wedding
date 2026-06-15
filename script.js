@@ -31,14 +31,18 @@ const glitterFields = [
   {
     el: document.querySelector(".welcome-glitter"),
     seed: 0x2A4C91,
-    boost: 1.05,
-    bandBoosts: [1.45, 1.25, 1.1, 1, 0.9, 0.8]
+    boost: 1.22,
+    maxY: 28,
+    bandBoosts: [1.8, 1.55, 1.18, 0.35],
+    maroonBias: [0.38, 0.28, 0.22, 0.16]
   },
   {
     el: document.querySelector(".reception-glitter"),
     seed: 0x5A1723,
-    boost: 1.42,
-    bandBoosts: [1.6, 1.34, 1.12, 1.02, 0.9, 0.82]
+    boost: 1.56,
+    maxY: 28,
+    bandBoosts: [1.95, 1.7, 1.22, 0.4],
+    maroonBias: [0.66, 0.54, 0.34, 0.22]
   }
 ].filter(({ el }) => el);
 
@@ -76,19 +80,17 @@ function mulberry32(seed) {
   };
 }
 
-function buildGlitterField(field, seed, boost, bandBoosts = []) {
+function buildGlitterField(field, seed, boost, bandBoosts = [], maxY = 34, maroonBias = []) {
   field.replaceChildren();
 
   const rng = mulberry32(seed);
   const mobile = window.matchMedia("(max-width: 760px)").matches;
   const scale = (mobile ? 0.72 : 1) * boost;
   const bands = [
-    { start: 0, end: 10, count: 66, star: 0.11, rare: 0.08 },
-    { start: 10, end: 25, count: 56, star: 0.09, rare: 0.07 },
-    { start: 25, end: 40, count: 40, star: 0.06, rare: 0.05 },
-    { start: 40, end: 60, count: 28, star: 0.04, rare: 0.04 },
-    { start: 60, end: 75, count: 12, star: 0.03, rare: 0.03 },
-    { start: 75, end: 90, count: 5, star: 0, rare: 0.02 }
+    { start: 0, end: 8, count: 84, star: 0.12, rare: 0.08 },
+    { start: 8, end: 18, count: 70, star: 0.1, rare: 0.07 },
+    { start: 18, end: 26, count: 50, star: 0.07, rare: 0.05 },
+    { start: 26, end: 34, count: 24, star: 0.03, rare: 0.03 }
   ];
 
   const palette = {
@@ -107,21 +109,21 @@ function buildGlitterField(field, seed, boost, bandBoosts = []) {
       const isStar = rng() < band.star;
       const isRare = !isStar && rng() < band.rare;
       const particle = document.createElement("span");
-      const y = easedBandY(band.start, band.end);
+      const y = Math.min(maxY, easedBandY(band.start, band.end));
       const x = lerp(0, 100);
       const tone = y < 10
         ? (field.classList.contains("reception-glitter")
-          ? (rng() < 0.58 ? "maroon" : rng() < 0.84 ? "gold" : rng() < 0.95 ? "highlight" : "gold")
-          : (rng() < 0.34 ? "maroon" : rng() < 0.8 ? "gold" : rng() < 0.93 ? "highlight" : "gold"))
+          ? (rng() < (maroonBias[0] || 0.58) ? "maroon" : rng() < 0.84 ? "gold" : rng() < 0.95 ? "highlight" : "gold")
+          : (rng() < (maroonBias[0] || 0.34) ? "maroon" : rng() < 0.8 ? "gold" : rng() < 0.93 ? "highlight" : "gold"))
         : y < 25
           ? (field.classList.contains("reception-glitter")
-            ? (rng() < 0.46 ? "maroon" : rng() < 0.8 ? "gold" : rng() < 0.92 ? "highlight" : "gold")
-            : (rng() < 0.28 ? "maroon" : rng() < 0.78 ? "gold" : rng() < 0.91 ? "highlight" : "gold"))
+            ? (rng() < (maroonBias[1] || 0.46) ? "maroon" : rng() < 0.8 ? "gold" : rng() < 0.92 ? "highlight" : "gold")
+            : (rng() < (maroonBias[1] || 0.28) ? "maroon" : rng() < 0.78 ? "gold" : rng() < 0.91 ? "highlight" : "gold"))
           : y < 40
-            ? (rng() < 0.26 ? "maroon" : rng() < 0.78 ? "gold" : rng() < 0.92 ? "highlight" : "gold")
-            : y < 60
-              ? (rng() < 0.18 ? "maroon" : rng() < 0.82 ? "gold" : rng() < 0.92 ? "highlight" : "gold")
-              : (rng() < 0.12 ? "maroon" : rng() < 0.88 ? "gold" : "highlight");
+            ? (field.classList.contains("reception-glitter")
+              ? (rng() < (maroonBias[2] || 0.26) ? "maroon" : rng() < 0.78 ? "gold" : rng() < 0.92 ? "highlight" : "gold")
+              : (rng() < (maroonBias[2] || 0.26) ? "maroon" : rng() < 0.78 ? "gold" : rng() < 0.92 ? "highlight" : "gold"))
+            : (rng() < (maroonBias[3] || 0.12) ? "maroon" : rng() < 0.88 ? "gold" : "highlight");
 
       const size = isStar
         ? lerp(1.7, 3.2) * (mobile ? 0.9 : 1)
@@ -164,14 +166,14 @@ function buildGlitterField(field, seed, boost, bandBoosts = []) {
   });
 }
 
-glitterFields.forEach(({ el, seed, boost, bandBoosts }) => buildGlitterField(el, seed, boost, bandBoosts));
+glitterFields.forEach(({ el, seed, boost, bandBoosts, maxY, maroonBias }) => buildGlitterField(el, seed, boost, bandBoosts, maxY, maroonBias));
 
 let glitterResizeFrame = null;
 window.addEventListener("resize", () => {
   if (!glitterFields.length) return;
   window.cancelAnimationFrame(glitterResizeFrame);
   glitterResizeFrame = window.requestAnimationFrame(() => {
-    glitterFields.forEach(({ el, seed, boost, bandBoosts }) => buildGlitterField(el, seed, boost, bandBoosts));
+    glitterFields.forEach(({ el, seed, boost, bandBoosts, maxY, maroonBias }) => buildGlitterField(el, seed, boost, bandBoosts, maxY, maroonBias));
   });
 });
 
