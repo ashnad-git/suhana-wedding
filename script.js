@@ -27,7 +27,7 @@ const intro = document.querySelector("#intro");
 const site = document.querySelector("#site");
 const openInvite = document.querySelector("#openInvite");
 const emberField = openInvite.querySelector(".ember-field");
-const glitterField = document.querySelector(".luxury-lights");
+const glitterField = document.querySelector(".reception-glitter");
 
 for (let index = 0; index < 46; index += 1) {
   const angle = (Math.PI * 2 * index) / 46 + ((index % 5) - 2) * .045;

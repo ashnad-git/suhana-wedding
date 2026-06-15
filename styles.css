@@ -328,8 +328,23 @@ main > :is(section, footer)::after {
   position: relative;
   z-index: 1;
 }
+.welcome .luxury-lights {
+  --strand-opacity: .58;
+  --strand-opacity-low: .31;
+  --glow-size: 10px;
+  --glow-spread: 20px;
+  --sparkle-size: 3px;
+  position: absolute;
+  z-index: 0;
+  inset: 0 0 auto;
+  height: min(31vh, 330px);
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
+}
 /* Luxury glitter canopy tuned for the top half of page 4. */
-.luxury-lights {
+.reception-glitter {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -356,15 +371,15 @@ main > :is(section, footer)::after {
     transparent 90%
   );
 }
-.luxury-lights::before,
-.luxury-lights::after {
+.reception-glitter::before,
+.reception-glitter::after {
   content: "";
   position: absolute;
   inset: -8% 0 -10%;
   pointer-events: none;
   background-repeat: no-repeat;
 }
-.luxury-lights::before {
+.reception-glitter::before {
   opacity: .9;
   background-image:
     radial-gradient(circle at 8% 4%, rgba(89, 19, 33, .84) 0 .9px, transparent 1.1px),
@@ -423,7 +438,7 @@ main > :is(section, footer)::after {
     100% 100%;
   animation: glitter-drift-a 18s linear infinite;
 }
-.luxury-lights::after {
+.reception-glitter::after {
   opacity: .72;
   background-image:
     radial-gradient(circle at 4% 8%, rgba(251, 242, 225, .9) 0 .55px, transparent 1.1px),
@@ -481,7 +496,7 @@ main > :is(section, footer)::after {
   33% { opacity: .78; }
   66% { opacity: .63; }
 }
-.luxury-lights .glitter-particle {
+.reception-glitter .glitter-particle {
   position: absolute;
   left: var(--x);
   top: var(--y);
@@ -498,11 +513,11 @@ main > :is(section, footer)::after {
   animation: glitter-particle-twinkle var(--twinkle-duration, 7s) ease-in-out var(--twinkle-delay, 0s) infinite;
   will-change: opacity, transform;
 }
-.luxury-lights .glitter-particle.is-star {
+.reception-glitter .glitter-particle.is-star {
   border-radius: 0;
   clip-path: polygon(50% 0, 60% 36%, 100% 50%, 60% 64%, 50% 100%, 40% 64%, 0 50%, 40% 36%);
 }
-.luxury-lights .glitter-particle.is-rare {
+.reception-glitter .glitter-particle.is-rare {
   filter: drop-shadow(0 0 2px rgba(255, 242, 225, .24));
 }
 @keyframes glitter-particle-twinkle {
@@ -525,9 +540,36 @@ main > :is(section, footer)::after {
   background: linear-gradient(145deg, #e0ac69 0%, #dfbf86 52%, #d7a95e 100%);
   text-align: center;
 }
-.reception > :not(.luxury-lights) {
+.reception > :not(.reception-glitter) {
   position: relative;
   z-index: 1;
+}
+.reception .reception-glitter {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 18%,
+    rgba(0,0,0,.95) 35%,
+    rgba(0,0,0,.78) 52%,
+    rgba(0,0,0,.38) 67%,
+    rgba(0,0,0,.08) 78%,
+    transparent 90%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 18%,
+    rgba(0,0,0,.95) 35%,
+    rgba(0,0,0,.78) 52%,
+    rgba(0,0,0,.38) 67%,
+    rgba(0,0,0,.08) 78%,
+    transparent 90%
+  );
 }
 .luxury-lights.reception-lights {
   --strand-opacity: .52;
