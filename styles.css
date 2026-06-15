@@ -619,6 +619,19 @@ input, select, textarea { width: 100%; padding: 13px 2px; border: 0; border-bott
 input::placeholder, textarea::placeholder { color: rgba(224, 172, 105, .64); }
 input:focus, select:focus, textarea:focus { border-color: #e0ac69; }
 input[type=radio] { width: auto; margin-right: 8px; accent-color: #e0ac69; }
+form fieldset.is-disabled,
+form label.is-disabled {
+  opacity: .45;
+}
+form fieldset.is-disabled .radio,
+form label.is-disabled {
+  cursor: not-allowed;
+}
+form fieldset.is-disabled input,
+form fieldset.is-disabled select,
+form label.is-disabled select {
+  pointer-events: none;
+}
 form label:has(textarea), .button, .form-message { grid-column: 1/-1; }
 .button { margin-top: 12px; padding: 17px 30px; border: 1px solid #e0ac69; color: #e0ac69; background: transparent; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; transition: .25s; }
 .button:hover { color: var(--forest); background: #e0ac69; }

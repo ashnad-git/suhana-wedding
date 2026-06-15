@@ -114,3 +114,36 @@ document.querySelector("#rsvpForm").addEventListener("submit", (event) => {
       : `Thank you, ${name}. We'll note your attendance for ${attendanceLabel}.`;
   event.currentTarget.querySelector(".button").textContent = "Response received";
 });
+
+const rsvpForm = document.querySelector("#rsvpForm");
+const attendingChoices = rsvpForm.querySelectorAll('input[name="attending"]');
+const rsvpExtras = rsvpForm.querySelectorAll("[data-rsvp-extra]");
+const rsvpExtraInputs = rsvpForm.querySelectorAll('[data-rsvp-extra] input, [data-rsvp-extra] select');
+
+function setRsvpExtrasEnabled(enabled) {
+  rsvpExtras.forEach((el) => {
+    el.classList.toggle("is-disabled", !enabled);
+  });
+
+  rsvpExtraInputs.forEach((input) => {
+    input.disabled = !enabled;
+    if (!enabled && input.type === "radio") {
+      input.checked = false;
+    }
+  });
+
+  rsvpForm.querySelectorAll('input[name="foodPreference"], input[name="stayRequired"]').forEach((input) => {
+    input.required = enabled;
+  });
+}
+
+function syncRsvpExtras() {
+  const selected = rsvpForm.querySelector('input[name="attending"]:checked');
+  setRsvpExtrasEnabled(!selected || selected.value !== "none");
+}
+
+attendingChoices.forEach((input) => {
+  input.addEventListener("change", syncRsvpExtras);
+});
+
+syncRsvpExtras();
