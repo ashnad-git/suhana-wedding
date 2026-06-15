@@ -2,8 +2,8 @@ const wedding = {
   bride: "Suhana",
   groom: "Deepak",
   date: "2026-09-19T16:30:00+04:00",
-  location: "Bangalore, India",
-  venue: "The Secret Garden"
+  location: "Vijayanagara, Bangalore",
+  venue: "Vijayanagara Club"
 };
 
 const $all = (selector) => document.querySelectorAll(selector);

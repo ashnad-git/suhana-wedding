@@ -277,6 +277,24 @@ button, input, select, textarea { font: inherit; }
 
 #site { opacity: 0; transition: opacity 1s; }
 #site.visible { opacity: 1; }
+main { counter-reset: page; }
+main > :is(section, footer) {
+  position: relative;
+  counter-increment: page;
+}
+main > :is(section, footer)::after {
+  content: "0" counter(page);
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  z-index: 4;
+  color: currentColor;
+  opacity: .42;
+  font: 500 .52rem/1 var(--sans);
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
 .nav { position: fixed; z-index: 50; top: 0; left: 0; width: 100%; height: 78px; padding: 0 4vw; display: flex; align-items: center; justify-content: space-between; color: white; }
 .nav-mark { color: #e0ac69; font: 1.45rem var(--serif); letter-spacing: .08em; }
 .nav-links { display: flex; gap: 32px; font-size: .67rem; letter-spacing: .17em; text-transform: uppercase; }
@@ -645,6 +663,12 @@ form label:has(textarea), .button, .form-message { grid-column: 1/-1; }
   .event-grid { grid-template-columns: 1fr; }
   .event-card { min-height: 530px; padding: 55px 35px; }
   .event-card h3 { font-size: 2.8rem; }
+  main > :is(section, footer)::after {
+    right: 12px;
+    bottom: 12px;
+    font-size: .5rem;
+    letter-spacing: .2em;
+  }
   .rsvp-card { padding: 50px 25px; }
   form { grid-template-columns: 1fr; }
   form > *, fieldset, form label:has(textarea), .button, .form-message { grid-column: 1; }
