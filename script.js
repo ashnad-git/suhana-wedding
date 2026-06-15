@@ -27,6 +27,7 @@ const intro = document.querySelector("#intro");
 const site = document.querySelector("#site");
 const openInvite = document.querySelector("#openInvite");
 const emberField = openInvite.querySelector(".ember-field");
+const glitterField = document.querySelector(".luxury-lights");
 
 for (let index = 0; index < 46; index += 1) {
   const angle = (Math.PI * 2 * index) / 46 + ((index % 5) - 2) * .045;
@@ -51,6 +52,110 @@ openInvite.addEventListener("click", () => {
     document.body.classList.remove("locked");
     document.querySelector(".hero .reveal").classList.add("in-view");
   }, 3200);
+});
+
+function mulberry32(seed) {
+  return function random() {
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function buildPageFourGlitter() {
+  if (!glitterField) return;
+
+  glitterField.replaceChildren();
+
+  const rng = mulberry32(0x5A1723);
+  const mobile = window.matchMedia("(max-width: 760px)").matches;
+  const scale = mobile ? 0.72 : 1;
+  const bands = [
+    { start: 0, end: 10, count: 52, star: 0.10, rare: 0.08 },
+    { start: 10, end: 25, count: 44, star: 0.08, rare: 0.06 },
+    { start: 25, end: 40, count: 30, star: 0.05, rare: 0.04 },
+    { start: 40, end: 60, count: 18, star: 0.03, rare: 0.03 },
+    { start: 60, end: 75, count: 8, star: 0.02, rare: 0.02 },
+    { start: 75, end: 90, count: 3, star: 0, rare: 0.02 }
+  ];
+
+  const palette = {
+    maroon: ["89, 19, 33", "121, 36, 53"],
+    gold: ["224, 172, 105", "214, 155, 77"],
+    highlight: ["251, 242, 225", "241, 226, 205"]
+  };
+
+  const pick = (values) => values[Math.floor(rng() * values.length)];
+  const lerp = (min, max) => min + (max - min) * rng();
+  const easedBandY = (start, end) => start + Math.pow(rng(), 1.25) * (end - start);
+
+  bands.forEach((band) => {
+    const count = Math.max(0, Math.round(band.count * scale));
+    for (let index = 0; index < count; index += 1) {
+      const isStar = rng() < band.star;
+      const isRare = !isStar && rng() < band.rare;
+      const particle = document.createElement("span");
+      const y = easedBandY(band.start, band.end);
+      const x = lerp(0, 100);
+      const tone = y < 10
+        ? (rng() < 0.46 ? "maroon" : rng() < 0.82 ? "gold" : rng() < 0.94 ? "highlight" : "gold")
+        : y < 25
+          ? (rng() < 0.34 ? "maroon" : rng() < 0.77 ? "gold" : rng() < 0.9 ? "highlight" : "gold")
+          : y < 40
+            ? (rng() < 0.26 ? "maroon" : rng() < 0.78 ? "gold" : rng() < 0.92 ? "highlight" : "gold")
+            : y < 60
+              ? (rng() < 0.18 ? "maroon" : rng() < 0.82 ? "gold" : rng() < 0.92 ? "highlight" : "gold")
+              : (rng() < 0.12 ? "maroon" : rng() < 0.88 ? "gold" : "highlight");
+
+      const size = isStar
+        ? lerp(1.7, 3.2) * (mobile ? 0.9 : 1)
+        : isRare
+          ? lerp(1.2, 2.2) * (mobile ? 0.9 : 1)
+          : lerp(y < 25 ? 0.5 : 0.4, y < 40 ? 1.5 : y < 60 ? 1.1 : 0.85) * (mobile ? 0.92 : 1);
+
+      const opacity = y < 10
+        ? lerp(0.5, 0.96)
+        : y < 25
+          ? lerp(0.36, 0.86)
+          : y < 40
+            ? lerp(0.22, 0.6)
+            : y < 60
+              ? lerp(0.12, 0.38)
+              : y < 75
+                ? lerp(0.06, 0.18)
+                : lerp(0.03, 0.08);
+
+      particle.className = `glitter-particle ${isStar ? "is-star" : "is-dot"} ${isRare ? "is-rare" : ""}`.trim();
+      particle.style.setProperty("--x", `${x}%`);
+      particle.style.setProperty("--y", `${y}%`);
+      particle.style.setProperty("--size", `${size}px`);
+      particle.style.setProperty("--opacity", opacity.toFixed(3));
+      particle.style.setProperty("--particle-color", `rgb(${pick(
+        tone === "maroon" ? palette.maroon :
+        tone === "highlight" ? palette.highlight :
+        palette.gold
+      )})`);
+      particle.style.setProperty("--particle-glow", `rgba(${pick(
+        tone === "maroon" ? palette.maroon :
+        tone === "highlight" ? palette.highlight :
+        palette.gold
+      )}, ${tone === "maroon" ? 0.24 : tone === "highlight" ? 0.44 : 0.34})`);
+      particle.style.setProperty("--rotate", `${lerp(-18, 18).toFixed(1)}deg`);
+      particle.style.setProperty("--twinkle-duration", `${lerp(5.5, 11).toFixed(2)}s`);
+      particle.style.setProperty("--twinkle-delay", `${lerp(-11, 0).toFixed(2)}s`);
+      glitterField.appendChild(particle);
+    }
+  });
+}
+
+buildPageFourGlitter();
+
+let glitterResizeFrame = null;
+window.addEventListener("resize", () => {
+  if (!glitterField) return;
+  window.cancelAnimationFrame(glitterResizeFrame);
+  glitterResizeFrame = window.requestAnimationFrame(buildPageFourGlitter);
 });
 
 const observer = new IntersectionObserver((entries) => {
