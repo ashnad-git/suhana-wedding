@@ -42,7 +42,7 @@ const glitterFields = [
     boost: 1.56,
     maxY: 28,
     bandBoosts: [1.95, 1.7, 1.22, 0.4],
-    maroonBias: [0.66, 0.54, 0.34, 0.22]
+    maroonBias: [0.78, 0.66, 0.42, 0.28]
   }
 ].filter(({ el }) => el);
 
