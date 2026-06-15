@@ -324,63 +324,54 @@ main > :is(section, footer)::after {
   background: linear-gradient(145deg, #591321 0%, var(--forest) 52%, #480d19 100%);
   text-align: center;
 }
-.welcome > :not(.luxury-lights) {
+.welcome > :not(.welcome-glitter) {
   position: relative;
   z-index: 1;
 }
-.welcome .luxury-lights {
-  --strand-opacity: .58;
-  --strand-opacity-low: .31;
-  --glow-size: 10px;
-  --glow-spread: 20px;
-  --sparkle-size: 3px;
+.page-glitter {
   position: absolute;
   z-index: 0;
-  inset: 0 0 auto;
-  height: min(31vh, 330px);
-  overflow: hidden;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
-}
-/* Luxury glitter canopy tuned for the top half of page 4. */
-.reception-glitter {
-  position: absolute;
   inset: 0;
-  z-index: 0;
   overflow: hidden;
   pointer-events: none;
   -webkit-mask-image: linear-gradient(
     to bottom,
     rgba(0,0,0,1) 0%,
-    rgba(0,0,0,1) 18%,
-    rgba(0,0,0,.95) 35%,
-    rgba(0,0,0,.78) 52%,
-    rgba(0,0,0,.38) 67%,
-    rgba(0,0,0,.08) 78%,
-    transparent 90%
+    rgba(0,0,0,1) 20%,
+    rgba(0,0,0,.94) 38%,
+    rgba(0,0,0,.72) 54%,
+    rgba(0,0,0,.34) 70%,
+    rgba(0,0,0,.08) 83%,
+    transparent 94%
   );
   mask-image: linear-gradient(
     to bottom,
     rgba(0,0,0,1) 0%,
-    rgba(0,0,0,1) 18%,
-    rgba(0,0,0,.95) 35%,
-    rgba(0,0,0,.78) 52%,
-    rgba(0,0,0,.38) 67%,
-    rgba(0,0,0,.08) 78%,
-    transparent 90%
+    rgba(0,0,0,1) 20%,
+    rgba(0,0,0,.94) 38%,
+    rgba(0,0,0,.72) 54%,
+    rgba(0,0,0,.34) 70%,
+    rgba(0,0,0,.08) 83%,
+    transparent 94%
   );
 }
-.reception-glitter::before,
-.reception-glitter::after {
+.welcome-glitter {
+  height: min(45vh, 430px);
+}
+/* Luxury glitter canopy tuned for the top half of page 4. */
+.reception-glitter {
+  --glitter-boost: 1.3;
+}
+.page-glitter::before,
+.page-glitter::after {
   content: "";
   position: absolute;
   inset: -8% 0 -10%;
   pointer-events: none;
   background-repeat: no-repeat;
 }
-.reception-glitter::before {
-  opacity: .9;
+.page-glitter::before {
+  opacity: .96;
   background-image:
     radial-gradient(circle at 8% 4%, rgba(89, 19, 33, .84) 0 .9px, transparent 1.1px),
     radial-gradient(circle at 14% 7%, rgba(224, 172, 105, .92) 0 1px, transparent 1.3px),
@@ -438,8 +429,8 @@ main > :is(section, footer)::after {
     100% 100%;
   animation: glitter-drift-a 18s linear infinite;
 }
-.reception-glitter::after {
-  opacity: .72;
+.page-glitter::after {
+  opacity: .82;
   background-image:
     radial-gradient(circle at 4% 8%, rgba(251, 242, 225, .9) 0 .55px, transparent 1.1px),
     radial-gradient(circle at 16% 12%, rgba(224, 172, 105, .94) 0 .6px, transparent 1.25px),
@@ -481,6 +472,8 @@ main > :is(section, footer)::after {
     100% 100%;
   animation: glitter-drift-b 24s linear infinite, glitter-twinkle 7s ease-in-out infinite;
 }
+.welcome-glitter::before { opacity: .86; }
+.welcome-glitter::after { opacity: .66; }
 @keyframes glitter-drift-a {
   0% { transform: translate3d(0, 0, 0); opacity: .86; }
   50% { transform: translate3d(0, 12px, 0); opacity: .96; }
@@ -512,6 +505,30 @@ main > :is(section, footer)::after {
   transform: translate(-50%, -50%) rotate(var(--rotate, 0deg));
   animation: glitter-particle-twinkle var(--twinkle-duration, 7s) ease-in-out var(--twinkle-delay, 0s) infinite;
   will-change: opacity, transform;
+}
+.welcome-glitter .glitter-particle {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  opacity: var(--opacity);
+  background: var(--particle-color);
+  box-shadow:
+    0 0 3px var(--particle-glow),
+    0 0 7px rgba(255, 242, 225, calc(var(--opacity) * .18));
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%) rotate(var(--rotate, 0deg));
+  animation: glitter-particle-twinkle var(--twinkle-duration, 7s) ease-in-out var(--twinkle-delay, 0s) infinite;
+  will-change: opacity, transform;
+}
+.welcome-glitter .glitter-particle.is-star {
+  border-radius: 0;
+  clip-path: polygon(50% 0, 60% 36%, 100% 50%, 60% 64%, 50% 100%, 40% 64%, 0 50%, 40% 36%);
+}
+.welcome-glitter .glitter-particle.is-rare {
+  filter: drop-shadow(0 0 2px rgba(255, 242, 225, .24));
 }
 .reception-glitter .glitter-particle.is-star {
   border-radius: 0;
@@ -553,22 +570,24 @@ main > :is(section, footer)::after {
   -webkit-mask-image: linear-gradient(
     to bottom,
     rgba(0,0,0,1) 0%,
-    rgba(0,0,0,1) 18%,
-    rgba(0,0,0,.95) 35%,
-    rgba(0,0,0,.78) 52%,
-    rgba(0,0,0,.38) 67%,
-    rgba(0,0,0,.08) 78%,
-    transparent 90%
+    rgba(0,0,0,1) 15%,
+    rgba(0,0,0,.98) 28%,
+    rgba(0,0,0,.88) 42%,
+    rgba(0,0,0,.62) 58%,
+    rgba(0,0,0,.2) 74%,
+    rgba(0,0,0,.06) 86%,
+    transparent 96%
   );
   mask-image: linear-gradient(
     to bottom,
     rgba(0,0,0,1) 0%,
-    rgba(0,0,0,1) 18%,
-    rgba(0,0,0,.95) 35%,
-    rgba(0,0,0,.78) 52%,
-    rgba(0,0,0,.38) 67%,
-    rgba(0,0,0,.08) 78%,
-    transparent 90%
+    rgba(0,0,0,1) 15%,
+    rgba(0,0,0,.98) 28%,
+    rgba(0,0,0,.88) 42%,
+    rgba(0,0,0,.62) 58%,
+    rgba(0,0,0,.2) 74%,
+    rgba(0,0,0,.06) 86%,
+    transparent 96%
   );
 }
 .luxury-lights.reception-lights {

@@ -27,7 +27,10 @@ const intro = document.querySelector("#intro");
 const site = document.querySelector("#site");
 const openInvite = document.querySelector("#openInvite");
 const emberField = openInvite.querySelector(".ember-field");
-const glitterField = document.querySelector(".reception-glitter");
+const glitterFields = [
+  { el: document.querySelector(".welcome-glitter"), seed: 0x2A4C91, boost: 0.9 },
+  { el: document.querySelector(".reception-glitter"), seed: 0x5A1723, boost: 1.28 }
+].filter(({ el }) => el);
 
 for (let index = 0; index < 46; index += 1) {
   const angle = (Math.PI * 2 * index) / 46 + ((index % 5) - 2) * .045;
@@ -63,21 +66,19 @@ function mulberry32(seed) {
   };
 }
 
-function buildPageFourGlitter() {
-  if (!glitterField) return;
+function buildGlitterField(field, seed, boost) {
+  field.replaceChildren();
 
-  glitterField.replaceChildren();
-
-  const rng = mulberry32(0x5A1723);
+  const rng = mulberry32(seed);
   const mobile = window.matchMedia("(max-width: 760px)").matches;
-  const scale = mobile ? 0.72 : 1;
+  const scale = (mobile ? 0.72 : 1) * boost;
   const bands = [
-    { start: 0, end: 10, count: 52, star: 0.10, rare: 0.08 },
-    { start: 10, end: 25, count: 44, star: 0.08, rare: 0.06 },
-    { start: 25, end: 40, count: 30, star: 0.05, rare: 0.04 },
-    { start: 40, end: 60, count: 18, star: 0.03, rare: 0.03 },
-    { start: 60, end: 75, count: 8, star: 0.02, rare: 0.02 },
-    { start: 75, end: 90, count: 3, star: 0, rare: 0.02 }
+    { start: 0, end: 10, count: 66, star: 0.11, rare: 0.08 },
+    { start: 10, end: 25, count: 56, star: 0.09, rare: 0.07 },
+    { start: 25, end: 40, count: 40, star: 0.06, rare: 0.05 },
+    { start: 40, end: 60, count: 28, star: 0.04, rare: 0.04 },
+    { start: 60, end: 75, count: 12, star: 0.03, rare: 0.03 },
+    { start: 75, end: 90, count: 5, star: 0, rare: 0.02 }
   ];
 
   const palette = {
@@ -144,18 +145,20 @@ function buildPageFourGlitter() {
       particle.style.setProperty("--rotate", `${lerp(-18, 18).toFixed(1)}deg`);
       particle.style.setProperty("--twinkle-duration", `${lerp(5.5, 11).toFixed(2)}s`);
       particle.style.setProperty("--twinkle-delay", `${lerp(-11, 0).toFixed(2)}s`);
-      glitterField.appendChild(particle);
+      field.appendChild(particle);
     }
   });
 }
 
-buildPageFourGlitter();
+glitterFields.forEach(({ el, seed, boost }) => buildGlitterField(el, seed, boost));
 
 let glitterResizeFrame = null;
 window.addEventListener("resize", () => {
-  if (!glitterField) return;
+  if (!glitterFields.length) return;
   window.cancelAnimationFrame(glitterResizeFrame);
-  glitterResizeFrame = window.requestAnimationFrame(buildPageFourGlitter);
+  glitterResizeFrame = window.requestAnimationFrame(() => {
+    glitterFields.forEach(({ el, seed, boost }) => buildGlitterField(el, seed, boost));
+  });
 });
 
 const observer = new IntersectionObserver((entries) => {
