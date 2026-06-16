@@ -180,6 +180,19 @@ button, input, select, textarea { font: inherit; }
 .card::after { inset: 13px; border: 1px solid rgba(177,120,54,.7); }
 .card small { max-width: 290px; line-height: 1.65; letter-spacing: .16em; text-transform: uppercase; }
 .card b { color: #711d2d; font: 3rem var(--serif); text-shadow: 0 1px #f5d9a8; }
+.card-monogram {
+  display: grid;
+  place-items: center;
+  line-height: 0;
+  text-shadow: none;
+}
+.card-logo {
+  display: block;
+  width: auto;
+  height: clamp(66px, 12vw, 76px);
+  max-width: min(92px, 42vw);
+  object-fit: contain;
+}
 .burn-glow {
   position: absolute;
   z-index: 10;
