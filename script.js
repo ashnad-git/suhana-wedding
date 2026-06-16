@@ -336,6 +336,50 @@ function validateRsvpName() {
   return false;
 }
 
+function sendRsvpToSheet(payload) {
+  const callbackName = `rsvpCallback_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  const endpoint = new URL(RSVP_WEB_APP_URL);
+  const script = document.createElement("script");
+  let timeoutId = null;
+
+  endpoint.searchParams.set("callback", callbackName);
+  Object.entries(payload).forEach(([key, value]) => {
+    endpoint.searchParams.set(key, value);
+  });
+
+  return new Promise((resolve, reject) => {
+    function cleanup() {
+      window.clearTimeout(timeoutId);
+      delete window[callbackName];
+      script.remove();
+    }
+
+    window[callbackName] = (response) => {
+      cleanup();
+
+      if (response && response.ok) {
+        resolve(response);
+        return;
+      }
+
+      reject(new Error(response && response.error ? response.error : "RSVP submission failed."));
+    };
+
+    script.onerror = () => {
+      cleanup();
+      reject(new Error("RSVP endpoint could not be loaded."));
+    };
+
+    timeoutId = window.setTimeout(() => {
+      cleanup();
+      reject(new Error("RSVP endpoint did not respond."));
+    }, 12000);
+
+    script.src = endpoint.toString();
+    document.body.append(script);
+  });
+}
+
 rsvpForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -353,15 +397,7 @@ rsvpForm.addEventListener("submit", async (event) => {
   setRsvpSubmitState(true);
 
   try {
-    await fetch(RSVP_WEB_APP_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
-      body: JSON.stringify(payload)
-    });
-
+    await sendRsvpToSheet(payload);
     rsvpMessage.textContent = getRsvpSuccessMessage(payload);
     rsvpSubmitButton.textContent = "Response received";
   } catch (error) {
