@@ -309,7 +309,16 @@ main > :is(section, footer)::after {
   pointer-events: none;
 }
 .nav { position: fixed; z-index: 50; top: 0; left: 0; width: 100%; height: 78px; padding: 0 4vw; display: flex; align-items: center; justify-content: space-between; color: #e0ac69; }
-.nav-mark { color: #e0ac69; font: 1.45rem var(--serif); letter-spacing: .08em; }
+.nav-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.45em;
+  min-height: 1.45em;
+  color: #e0ac69;
+  font: 1.45rem var(--serif);
+  letter-spacing: .08em;
+}
 .nav-links { display: flex; gap: 32px; font-size: .67rem; letter-spacing: .17em; text-transform: uppercase; }
 .menu-toggle { display: none; }
 .hero { position: relative; height: 100svh; min-height: 600px; overflow: hidden; color: #e0ac69; }
