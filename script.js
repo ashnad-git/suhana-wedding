@@ -232,7 +232,10 @@ const rsvpSubmitButton = rsvpForm.querySelector(".button");
 const rsvpSubmitLabel = rsvpSubmitButton.textContent;
 const attendingChoices = rsvpForm.querySelectorAll('input[name="attending"]');
 const rsvpExtras = rsvpForm.querySelectorAll("[data-rsvp-extra]");
-const rsvpExtraInputs = rsvpForm.querySelectorAll('[data-rsvp-extra] input, [data-rsvp-extra] select');
+const sangeethGuestsSelect = rsvpForm.elements.sangeethGuests;
+const receptionGuestsSelect = rsvpForm.elements.receptionGuests;
+const foodPreferenceInputs = rsvpForm.querySelectorAll('input[name="foodPreference"]');
+const stayRequiredInputs = rsvpForm.querySelectorAll('input[name="stayRequired"]');
 const attendanceLabels = {
   sangeeth: "Sangeeth",
   reception: "Reception",
@@ -253,37 +256,74 @@ function resetRsvpExtras() {
     select.value = "0";
   });
 
-  rsvpForm.querySelectorAll('input[name="foodPreference"], input[name="stayRequired"]').forEach((input) => {
+  [...foodPreferenceInputs, ...stayRequiredInputs].forEach((input) => {
     input.checked = false;
   });
 }
 
-function setRsvpExtrasEnabled(enabled) {
-  rsvpExtras.forEach((el) => {
-    el.classList.toggle("is-disabled", !enabled);
-  });
+function setRsvpFieldEnabled(field, enabled) {
+  field.classList.toggle("is-disabled", !enabled);
 
-  rsvpExtraInputs.forEach((input) => {
+  field.querySelectorAll("input, select").forEach((input) => {
     input.disabled = !enabled;
-    if (!enabled && input.type === "radio") {
-      input.checked = false;
-    }
+  });
+}
+
+function setSelectEnabled(select, enabled) {
+  select.closest("label").classList.toggle("is-disabled", !enabled);
+  select.disabled = !enabled;
+
+  if (!enabled) {
+    select.value = "0";
+  }
+}
+
+function setRsvpExtrasEnabled(enabled) {
+  rsvpExtras.forEach((field) => {
+    setRsvpFieldEnabled(field, enabled);
   });
 
-  rsvpForm.querySelectorAll('input[name="foodPreference"], input[name="stayRequired"]').forEach((input) => {
+  [...foodPreferenceInputs, ...stayRequiredInputs].forEach((input) => {
     input.required = enabled;
+  });
+}
+
+function setRsvpAttendanceFields(attending) {
+  const isAttending = attending && attending !== "none";
+  const shouldEnableSangeethGuests = attending === "sangeeth" || attending === "both";
+  const shouldEnableReceptionGuests = attending === "reception" || attending === "both";
+
+  setSelectEnabled(sangeethGuestsSelect, shouldEnableSangeethGuests);
+  setSelectEnabled(receptionGuestsSelect, shouldEnableReceptionGuests);
+
+  if (!isAttending) {
+    [...foodPreferenceInputs, ...stayRequiredInputs].forEach((input) => {
+      input.checked = false;
+    });
+  }
+
+  foodPreferenceInputs.forEach((input) => {
+    input.disabled = !isAttending;
+    input.required = isAttending;
+  });
+
+  stayRequiredInputs.forEach((input) => {
+    input.disabled = !isAttending;
+    input.required = isAttending;
   });
 }
 
 function syncRsvpExtras() {
   const selected = rsvpForm.querySelector('input[name="attending"]:checked');
-  if (selected && selected.value === "none") {
+
+  if (!selected || selected.value === "none") {
     resetRsvpExtras();
     setRsvpExtrasEnabled(false);
     return;
   }
 
   setRsvpExtrasEnabled(true);
+  setRsvpAttendanceFields(selected.value);
 }
 
 function setRsvpSubmitState(isSubmitting) {
