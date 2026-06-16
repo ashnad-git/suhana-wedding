@@ -376,6 +376,30 @@ function validateRsvpName() {
   return false;
 }
 
+function validateGuestCounts() {
+  const selected = rsvpForm.querySelector('input[name="attending"]:checked');
+  const attending = selected ? selected.value : "";
+  const shouldValidateSangeeth = attending === "sangeeth" || attending === "both";
+  const shouldValidateReception = attending === "reception" || attending === "both";
+
+  sangeethGuestsSelect.setCustomValidity("");
+  receptionGuestsSelect.setCustomValidity("");
+
+  if (shouldValidateSangeeth && sangeethGuestsSelect.value === "0") {
+    sangeethGuestsSelect.setCustomValidity("Please select at least 1 Sangeeth guest.");
+    sangeethGuestsSelect.reportValidity();
+    return false;
+  }
+
+  if (shouldValidateReception && receptionGuestsSelect.value === "0") {
+    receptionGuestsSelect.setCustomValidity("Please select at least 1 Reception guest.");
+    receptionGuestsSelect.reportValidity();
+    return false;
+  }
+
+  return true;
+}
+
 function sendRsvpToSheet(payload) {
   const callbackName = `rsvpCallback_${Date.now()}_${Math.random().toString(36).slice(2)}`;
   const endpoint = new URL(RSVP_WEB_APP_URL);
@@ -423,7 +447,7 @@ function sendRsvpToSheet(payload) {
 rsvpForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  if (!validateRsvpName() || !rsvpForm.reportValidity()) {
+  if (!validateRsvpName() || !validateGuestCounts() || !rsvpForm.reportValidity()) {
     return;
   }
 
