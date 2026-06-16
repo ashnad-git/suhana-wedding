@@ -766,11 +766,17 @@ main > :is(section, footer)::after {
   54% { opacity: .78; transform: translateX(-50%) scale(1.1); }
   64% { opacity: .36; transform: translateX(-50%) scale(.98); }
 }
-.flourish { margin-bottom: 52px; font: 2rem var(--serif); }
-.flourish .amp {
-  font-family: Georgia, "Times New Roman", serif;
-  font-style: normal;
-  font-size: .65em;
+.flourish {
+  margin-bottom: 52px;
+  display: grid;
+  place-items: center;
+}
+.flourish-logo {
+  display: block;
+  width: clamp(128px, 20vw, 168px);
+  height: auto;
+  max-width: min(168px, 58vw);
+  object-fit: contain;
 }
 .display { margin: 0; font: clamp(3rem, 6vw, 6.5rem)/1.05 var(--serif); font-weight: 400; }
 .body-copy { max-width: 580px; margin: 35px auto 0; font-size: .95rem; line-height: 1.9; }
@@ -912,6 +918,8 @@ form label:has(textarea), .button, .form-message { grid-column: 1/-1; }
   .hero-content { bottom: 15vh; }
   .hero-content h2, .closing h2 { flex-direction: column; gap: .05em; font-size: clamp(4rem,20vw,6.5rem); }
   .hero-content .amp { margin: -.12em 0; }
+  .flourish { margin-bottom: 44px; }
+  .flourish-logo { width: clamp(124px, 42vw, 154px); max-width: min(154px, 62vw); }
   .hero-date { font-size: .6rem; }
   .scroll-cue { right: auto; left: 50%; transform: translateX(-50%); white-space: nowrap; }
   .welcome { min-height: 100vh; }
