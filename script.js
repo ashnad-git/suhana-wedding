@@ -225,28 +225,28 @@ window.addEventListener("scroll", () => {
   }
 }, { passive: true });
 
-document.querySelector("#rsvpForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const data = new FormData(event.currentTarget);
-  const name = data.get("name").trim().split(" ")[0];
-  const attending = data.get("attending");
-  const attendanceLabel = {
-    sangeeth: "Sangeeth",
-    reception: "Reception",
-    both: "Sangeeth and Reception",
-    none: "no events"
-  }[attending] || "the celebration";
-  document.querySelector("#formMessage").textContent =
-    attending === "none"
-      ? `Thank you for letting us know, ${name}.`
-      : `Thank you, ${name}. We'll note your attendance for ${attendanceLabel}.`;
-  event.currentTarget.querySelector(".button").textContent = "Response received";
-});
-
+const RSVP_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzQwJQ_TEhHD5VASxLlu28iXr27m-0Vbw3EbweGtURof5kqZyUAvVeDJjYCoKIev8ymVQ/exec";
 const rsvpForm = document.querySelector("#rsvpForm");
+const rsvpMessage = document.querySelector("#formMessage");
+const rsvpSubmitButton = rsvpForm.querySelector(".button");
+const rsvpSubmitLabel = rsvpSubmitButton.textContent;
 const attendingChoices = rsvpForm.querySelectorAll('input[name="attending"]');
 const rsvpExtras = rsvpForm.querySelectorAll("[data-rsvp-extra]");
 const rsvpExtraInputs = rsvpForm.querySelectorAll('[data-rsvp-extra] input, [data-rsvp-extra] select');
+const attendanceLabels = {
+  sangeeth: "Sangeeth",
+  reception: "Reception",
+  both: "Sangeeth & Reception",
+  none: "None"
+};
+const foodLabels = {
+  veg: "Veg",
+  "non-veg": "Non-veg"
+};
+const stayLabels = {
+  yes: "Yes",
+  no: "No"
+};
 
 function resetRsvpExtras() {
   rsvpForm.querySelectorAll('select[name="sangeethGuests"], select[name="receptionGuests"]').forEach((select) => {
@@ -285,6 +285,90 @@ function syncRsvpExtras() {
 
   setRsvpExtrasEnabled(true);
 }
+
+function setRsvpSubmitState(isSubmitting) {
+  rsvpSubmitButton.disabled = isSubmitting;
+  rsvpSubmitButton.textContent = isSubmitting ? "Sending..." : rsvpSubmitLabel;
+}
+
+function getFirstName(name) {
+  return name.trim().split(/\s+/)[0];
+}
+
+function getRsvpPayload(form) {
+  const data = new FormData(form);
+  const attending = data.get("attending");
+  const isAttendingNone = attending === "none";
+
+  return {
+    name: String(data.get("name") || "").trim(),
+    attending: attendanceLabels[attending] || "",
+    sangeethGuests: isAttendingNone ? "0" : String(data.get("sangeethGuests") || "0"),
+    receptionGuests: isAttendingNone ? "0" : String(data.get("receptionGuests") || "0"),
+    foodPreference: isAttendingNone ? "" : (foodLabels[data.get("foodPreference")] || ""),
+    stayRequired: isAttendingNone ? "" : (stayLabels[data.get("stayRequired")] || ""),
+    source: window.location.href,
+    userAgent: navigator.userAgent
+  };
+}
+
+function getRsvpSuccessMessage(payload) {
+  const firstName = getFirstName(payload.name);
+
+  if (payload.attending === "None") {
+    return `Thank you for letting us know, ${firstName}.`;
+  }
+
+  return `Thank you, ${firstName}. We'll note your attendance for ${payload.attending}.`;
+}
+
+function validateRsvpName() {
+  const nameInput = rsvpForm.elements.name;
+
+  if (nameInput.value.trim()) {
+    nameInput.setCustomValidity("");
+    return true;
+  }
+
+  nameInput.setCustomValidity("Please enter your full name.");
+  nameInput.reportValidity();
+  nameInput.setCustomValidity("");
+  return false;
+}
+
+rsvpForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  if (!validateRsvpName() || !rsvpForm.reportValidity()) {
+    return;
+  }
+
+  if (!RSVP_WEB_APP_URL) {
+    rsvpMessage.textContent = "RSVP is not connected yet. Please add the Google Apps Script Web App URL.";
+    return;
+  }
+
+  const payload = getRsvpPayload(rsvpForm);
+  rsvpMessage.textContent = "";
+  setRsvpSubmitState(true);
+
+  try {
+    await fetch(RSVP_WEB_APP_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    rsvpMessage.textContent = getRsvpSuccessMessage(payload);
+    rsvpSubmitButton.textContent = "Response received";
+  } catch (error) {
+    rsvpMessage.textContent = "We could not send your response. Please try again.";
+    setRsvpSubmitState(false);
+  }
+});
 
 attendingChoices.forEach((input) => {
   input.addEventListener("change", syncRsvpExtras);
