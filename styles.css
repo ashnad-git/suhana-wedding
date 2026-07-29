@@ -799,7 +799,7 @@ main > :is(section, footer)::after {
 .story-copy .display { font-size: clamp(3rem,5vw,5.7rem); }
 .story-copy .body-copy { margin-left: 0; max-width: 510px; }
 .script { margin: 45px 0 0; font: italic 1.4rem Georgia, serif; }
-.image-section { position: relative; background: linear-gradient(rgba(89,15,34,.62),rgba(64,8,23,.74)), url("assets/garden-couple.png") center/cover fixed; background-blend-mode: multiply; color: white; }
+.image-section { position: relative; background: linear-gradient(rgba(89,15,34,.62),rgba(64,8,23,.74)), url("assets/image_2.jpg") center/cover fixed; background-blend-mode: multiply; color: white; }
 .countdown { min-height: 80vh; display: grid; place-items: center; text-align: center; }
 .countdown-inner { padding: 100px 20px; }
 .countdown,
