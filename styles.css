@@ -794,7 +794,7 @@ main > :is(section, footer)::after {
 .date-lockup span { padding: 12px 0; border-block: 1px solid currentColor; font-size: .66rem; letter-spacing: .2em; }
 .date-lockup strong { font: 5rem/1 var(--serif); font-weight: 400; }
 .story { min-height: 100vh; display: grid; grid-template-columns: 1fr; color: var(--ink); background: linear-gradient(145deg, #e0ac69 0%, #dfbf86 52%, #d7a95e 100%); }
-.story-photo { min-height: 750px; background: linear-gradient(rgba(111,29,44,.2),rgba(111,29,44,.2)), url("assets/image_3.jpg") 30% center/cover; background-blend-mode: color; filter: saturate(.75) sepia(.08); }
+.story-photo { min-height: 750px; background: linear-gradient(rgba(111,29,44,.2),rgba(111,29,44,.2)), url("assets/image_3.png") 30% center/cover; background-blend-mode: color; filter: saturate(.75) sepia(.08); }
 .story-copy { padding: 10vw; display: flex; flex-direction: column; justify-content: center; }
 .story-copy .display { font-size: clamp(3rem,5vw,5.7rem); }
 .story-copy .body-copy { margin-left: 0; max-width: 510px; }
