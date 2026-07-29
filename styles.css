@@ -904,7 +904,7 @@ form label:has(textarea), .button, .form-message { grid-column: 1/-1; }
 .closing { position: relative; height: 100svh; min-height: 650px; overflow: hidden; color: #e0ac69; }
 .closing::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(104,20,40,.2),rgba(61,7,21,.72)); }
 .closing-image { background-position: center; filter: saturate(.8); }
-.closing-copy { position: absolute; z-index: 2; inset: 0; display: grid; place-content: center; text-align: center; padding: 20px; color: #591321; }
+.closing-copy { position: absolute; z-index: 2; inset: 0; display: grid; place-content: center; text-align: center; padding: 70px 20px 20px; color: #591321; }
 .closing-copy .eyebrow,
 .closing-copy h2,
 .closing-copy p,
