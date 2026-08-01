@@ -329,7 +329,8 @@ main > :is(section, footer)::after {
 .hero .eyebrow.light { color: #c99750; }
 .hero-content h2, .closing h2 { display: flex; align-items: center; justify-content: center; gap: .22em; margin: 0; font: clamp(4.5rem, 11vw, 10rem)/.8 var(--serif); }
 .hero-content .amp { transform: translateY(.1em); }
-.hero-date { margin-top: 34px; font-size: .72rem; letter-spacing: .23em; text-transform: uppercase; }
+.hero .hero-eyebrow { margin: 24px 0 14px; }
+.hero-date { margin-top: 0; font-size: .72rem; letter-spacing: .23em; text-transform: uppercase; }
 .scroll-cue { position: absolute; z-index: 3; right: 4vw; bottom: 5vh; display: flex; align-items: center; gap: 10px; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; }
 .scroll-cue span { width: 34px; height: 1px; background: currentColor; }
 .paper { background: var(--paper); }
