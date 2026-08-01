@@ -333,9 +333,11 @@ main > :is(section, footer)::after {
   bottom: 10vh;
   text-align: center;
   text-shadow: 
-    0 0 12px rgba(224, 172, 105, 0.45),
-    0 0 28px rgba(201, 151, 80, 0.35),
-    0 0 45px rgba(184, 134, 59, 0.2);
+    0 0 4px rgba(255, 220, 160, 0.95),
+    0 0 10px rgba(240, 185, 110, 0.85),
+    0 0 22px rgba(224, 172, 105, 0.75),
+    0 0 38px rgba(201, 151, 80, 0.65),
+    0 0 60px rgba(184, 134, 59, 0.5);
 }
 .hero .eyebrow.light { color: #c99750; }
 .hero-content h2, .closing h2 { display: flex; align-items: center; justify-content: center; gap: .22em; margin: 0; font: clamp(4.5rem, 11vw, 10rem)/.8 var(--serif); }
