@@ -325,20 +325,7 @@ main > :is(section, footer)::after {
 .hero-image { position: absolute; inset: -7%; background: url("assets/image_1.jpg") center 42%/cover no-repeat; transform: scale(1.03); }
 .closing-image { position: absolute; inset: -7%; background: linear-gradient(rgba(89,15,34,.55), rgba(64,8,23,.78)), url("assets/image_4.jpg") center 42%/cover no-repeat; background-blend-mode: multiply; transform: scale(1.03); }
 .hero-shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(71,10,26,.32), rgba(92,18,35,.28) 45%, rgba(62,8,22,.82)); }
-.hero-content {
-  position: absolute;
-  z-index: 2;
-  left: 5vw;
-  right: 5vw;
-  bottom: 10vh;
-  text-align: center;
-  text-shadow: 
-    0 0 4px rgba(255, 220, 160, 0.95),
-    0 0 10px rgba(240, 185, 110, 0.85),
-    0 0 22px rgba(224, 172, 105, 0.75),
-    0 0 38px rgba(201, 151, 80, 0.65),
-    0 0 60px rgba(184, 134, 59, 0.5);
-}
+.hero-content { position: absolute; z-index: 2; left: 5vw; right: 5vw; bottom: 10vh; text-align: center; }
 .hero .eyebrow.light { color: #c99750; }
 .hero-content h2, .closing h2 { display: flex; align-items: center; justify-content: center; gap: .22em; margin: 0; font: clamp(4.5rem, 11vw, 10rem)/.8 var(--serif); }
 .hero-content .amp { transform: translateY(.1em); }
